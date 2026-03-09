@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dark-background: #101010;
+    --foreground: #ededed;
+    --main-background-color:#2d2d2d;
+  }
+}
+
+body {
+  background: var(--main-background-color);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+
+
+@layer base {
+
+  h1 {
+    @apply text-5xl font-semibold max-sm:text-4xl;
+  }
+  
+
+  h3 {
+    @apply  text-2xl font-bold;
+  }
+
+
+
+
+}
+
+@layer components {
+  .nav-link {
+    @apply relative text-sm font-medium pb-1;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-current transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+}
