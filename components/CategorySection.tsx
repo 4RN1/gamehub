@@ -15,15 +15,15 @@ interface categorySectionProps {
 const CategorySection = ({sectionTitle, items} : categorySectionProps) => {
   return (
    <section className="bg-(--dark-background) pb-5 ">
-      <div className="flex  gap-4 max-w-325 mx-auto pb-5 pt-5"> 
-        <h3>{sectionTitle}</h3> <Link
+      <div className="flex  gap-4 max-w-325 mx-auto pb-5 pt-5 max-sm:px-2"> 
+        <h3 className="max-sm:text-2xl">{sectionTitle}</h3> <Link
           href="/news"
           className="mt-2 flex items-center gap-1 text-[#d3d3d3] font-bold text-md  hover:text-[#f47938] transition-all delay-5">
            მეტი <span className="text-[#f47938] "> <MoveRight size={18}  /></span>
         </Link>
       </div>
       <div>
-        <div className=" grid grid-cols-5 gap-3 max-w-325 mx-auto">
+        <div className="grid lg:grid-cols-5 gap-3 max-w-325 mx-auto md:grid-cols-3 max-sm:grid-cols-1 max-sm:px-2">
           {
             items.map((t) => (
                 <div key={t.title} className="relative overflow-hidden rounded-xl h-62 cursor-pointer group">
