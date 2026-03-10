@@ -38,13 +38,13 @@ const Navbar = () => {
   
         </Link>
       </li>
-     |
-      <li>
+     {/* | */}
+      {/* <li>
         <Link href="/trending" className="nav-link">
           Tips/Guides
   
         </Link>
-      </li>
+      </li> */}
     </ul>
   </div>
 </nav>
