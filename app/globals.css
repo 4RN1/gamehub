@@ -40,7 +40,7 @@ body {
 
 @layer components {
   .nav-link {
-    @apply relative text-sm font-medium pb-1;
+    @apply relative text-lg font-medium pb-1;
   }
 
   .nav-link::after {

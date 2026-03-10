@@ -1,10 +1,11 @@
 import Image from "next/image"
 import Link from "next/link"
+import { MoveRight } from "lucide-react"
 
 const latestTestNews = [
   { 
     id: 1,
-    title: "GTA 6-is გამოსვლის თარიღი დადასტურდა ",
+    title: "GTA 6-ის გამოსვლის თარიღი დადასტურდა ",
     img: "/assets/test5.avif"
   },
   {
@@ -28,17 +29,17 @@ const sidebarNews = [
   {
     id: 1,
     title: "Nintendo Switch 2 საქართველოშიც გაიყიდება",
-    img: "/assets/test7.webp"
+    img: "/assets/test8.webp"
   },
   {
     id: 2,
     title: "Cyberpunk 2077-ის ახალი DLC გამოვიდა",
-    img: "/assets/test7.webp"
+    img: "/assets/test9.jpg"
   },
   {
     id: 3,
     title: "Xbox Series X ფასი შემცირდა ევროპაში",
-    img: "/assets/test7.webp"
+    img: "/assets/test2.webp"
   },
   {
     id: 4,
@@ -48,7 +49,7 @@ const sidebarNews = [
 ]
 
 
-interface latestNews  {
+interface latestNews {
     id:number,
     title:string,
     img:string,
@@ -68,14 +69,14 @@ const TrendingSection = () => {
 
   return (
  
-<section className=" min-h-screen p-6">
-  <div className="max-w-7xl mx-auto grid grid-cols-3 gap-5">
+<section className="  py-5">
+  <div className="max-w-325 mx-auto grid grid-cols-3 gap-5">
     
     {/* Main featured - 3 cols */}
- <div className="col-start-1 col-end-3 h-150 row-start-1 row-end-2 bg-gray-600 rounded-xl relative overflow-hidden group cursor-pointer">
-  <Image src='/assets/test3.webp' fill alt="random image" className="object-cover object-left group-hover:scale-105 transition-transform duration-300" />
-  <div className="absolute bottom-0 left-0 w-full pb-8 pl-5 bg-linear-to-t from-black/90 via-black/40 to-transparent">
-    <h2 className="text-white text-5xl font-bold leading-snug">ახალი მარიოს თამაში</h2>
+ <div className="col-start-1 col-end-3 h-130 row-start-1 row-end-2 bg-gray-600 rounded-xl relative overflow-hidden group cursor-pointer">
+  <Image src='/assets/test3.webp' fill alt="random image" className="object-cover object-left group-hover:scale-105 transition-transform duration-300 " />
+  <div className="absolute bottom-0 left-0 w-full pb-5 pl-5 bg-linear-to-t from-black/90 via-black/40 to-transparent">
+    <h2 className="text-white text-5xl font-bold leading-snug ">ახალი მარიოს თამაში</h2>
   </div>
 </div>
 
@@ -83,17 +84,23 @@ const TrendingSection = () => {
   <div className="col-span-1 row-start-1 row-end-2 h-full min-h-96">
   <h2 className="text-white text-xl font-bold text-center py-1.5">უახლესი ამბები</h2>
 
-  <div className="bg-gray-600 px-3 rounded-md">
+  <div className="bg-[#383838] px-5 rounded-md">
     {sidebarNews.map((t) => (
-      <div key={t.id} className="grid grid-cols-3 border-b items-center py-3 gap-2">
-        <div className="col-span-2 text-white text-sm font-bold">{t.title}</div>
-        <div className="relative h-20 rounded-2xl overflow-hidden">
+      <div key={t.id} className="grid grid-cols-3 border-b border-[#474747] items-center py-3 gap-5 last:border-b-0">
+        <Link href="/" className="col-span-2 text-white text-md font-bold hover:underline ">
+        {}
+        {t.title}</Link>
+        <Link href ="/" className="relative h-20 rounded-2xl overflow-hidden hover:opacity-90">
           <Image src={t.img} fill alt={t.title} className="object-cover"/>
-        </div>
+        </Link>
       </div>
     ))}
   </div>
-    <Link href="/news">მეტი</Link>
+  <div className="flex justify-end">
+   <Link href="/news" className="mt-2 flex items-center gap-1 text-[#d3d3d3] font-bold  hover:text-[#f47938]  transition-all delay-5">
+  მეტი <span className="text-[#f47938]"><MoveRight size={18} /></span>
+</Link>
+    </div>
 </div>
 
     {/* Bottom 4 cards */}
