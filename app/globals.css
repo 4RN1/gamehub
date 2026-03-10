@@ -51,4 +51,10 @@ body {
   .nav-link:hover::after {
     @apply w-full;
   }
+
+  .trending-cards {
+    @apply rounded h-50 relative object-cover ;
+  }
+
+
 }

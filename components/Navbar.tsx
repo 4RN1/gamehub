@@ -1,7 +1,6 @@
 
 
 import Link from "next/link";
-import React from "react";
 import AvatarIcon from "./AvatarSvgIcon";
 
 const Navbar = () => {
@@ -18,7 +17,7 @@ const Navbar = () => {
         </div>
         <div>
             {/*ანგარიშის icon */}
-             <AvatarIcon />
+           <Link href="/login"> <AvatarIcon /></Link>
         </div>
         </div>
       </div>
