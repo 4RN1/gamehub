@@ -1,9 +1,15 @@
-
+"use client";
 
 import Link from "next/link";
 import AvatarIcon from "./AvatarSvgIcon";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+const pathname = usePathname();
+  const hideNavbar = ["/login", "/registration"].includes(pathname);
+
+  if (hideNavbar) return null;
+
   return (
     <header className="bg-(--dark-background)">
       <div className="py-4 border-b border-[#333] flex justify-center">

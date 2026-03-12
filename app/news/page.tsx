@@ -1,10 +1,6 @@
-import React from 'react'
-
 const news = () => {
   return (
-    <div>
-      
-    </div>
+    <div className=""></div>
   )
 }
 

@@ -81,7 +81,7 @@ const TrendingSection = () => {
 </div>
 
     {/* Sidebar - 1 col, full height */}
-  <div className="col-span-1 row-start-1 row-end-2 h-full min-h-96 max-sm:col-span-full max-sm:row-auto">
+  <div className="col-span-1 row-start-1 row-end-2 h-full min-h-96 max-sm:col-span-full max-sm:row-auto ml-5">
   <h2 className="text-white text-xl font-bold text-center py-1.5">უახლესი ამბები</h2>
 
   <div className="bg-[#383838] px-5 rounded-md">

@@ -1,12 +1,11 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from "next/link";
 
-const page = () => {
+const Page = () => {
   return (
-    <div>
-      <Link href="/registration">რეგისტრაცია</Link>
-    </div>
-  )
-}
+   <div>
+    
+   </div>
+  );
+};
 
-export default page
+export default Page;
