@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { MoveRight } from "lucide-react"
+import { MoveRight, } from "lucide-react"
 
 const latestTestNews = [
   { 

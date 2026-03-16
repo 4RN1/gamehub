@@ -62,7 +62,7 @@ const page = () => {
                 </a>
             </div>
             <button className="h-10 w-78 border border-white rounded-xs text-white bg-transparent">
-              Create account
+              ანგარიშის შექმნა
             </button>
           </div>
         </div>
