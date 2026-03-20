@@ -1,24 +1,9 @@
+import { trendingArticles } from '@/lib/testData';
 import Image from 'next/image';
-import React from 'react'
 
 
-const trendingArticles = [
-  {
-    id: 1,
-    title: "LEGO Fan Creates Their Own Edward Scissorhands Minifigure",
-    image: "/assets/test2.webp",
-  },
-  {
-    id: 2,
-    title: "A Switch 2 Launch Title Has Shadow Dropped On Other Platforms",
-    image: "/assets/test2.webp",
-  },
-  {
-    id: 3,
-    title: "The Best Xbox Games You Still Have To Buy (Even With Game Pass)",
-    image: "/assets/test2.webp",
-  },
-];
+
+
 
 
 const SidebarLayout = () => {

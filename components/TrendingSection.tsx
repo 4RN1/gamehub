@@ -1,52 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import { MoveRight, } from "lucide-react"
+import { latestTestNews, sidebarNews } from "@/lib/testData"
 
-const latestTestNews = [
-  { 
-    id: 1,
-    title: "GTA 6-ის გამოსვლის თარიღი დადასტურდა ",
-    img: "/assets/test5.avif"
-  },
-  {
-    id: 2,
-    title: "Elden Ring-ის კიდევ ერთი რეკორდი",
-    img: "/assets/test7.webp"
-  },
-  {
-    id: 3,
-    title: "PlayStation 6-ის ტექნიკური ინფორმაცია გაიჟონა",
-    img: "/assets/test6.jpg"
-  },
-  {
-    id: 4,
-    title: "Call Of Duty 6 წლის შემდეგ Steam-ზე დაბრუნდა",
-    img: "/assets/test4.jpg"
-  }
-]
 
-const sidebarNews = [
-  {
-    id: 1,
-    title: "Nintendo Switch 2 საქართველოშიც გაიყიდება",
-    img: "/assets/test8.webp"
-  },
-  {
-    id: 2,
-    title: "Cyberpunk 2077-ის ახალი DLC გამოვიდა",
-    img: "/assets/test9.jpg"
-  },
-  {
-    id: 3,
-    title: "Xbox Series X ფასი შემცირდა ევროპაში",
-    img: "/assets/test2.webp"
-  },
-  {
-    id: 4,
-    title: "Minecraft-მა 300 მილიონი გაყიდული ასლი გადააჭარბა",
-    img: "/assets/test7.webp"
-  }
-]
 
 
 interface latestNews {
@@ -69,7 +26,7 @@ const TrendingSection = () => {
 
   return (
  
-<section className="  py-5">
+<section className="py-5">
   <div className="max-w-325 mx-auto grid md:grid-cols-3 gap-5  max-sm:grid-cols-1">
     
     {/* Main featured - 3 cols */}

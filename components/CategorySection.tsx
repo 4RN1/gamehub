@@ -14,7 +14,7 @@ interface categorySectionProps {
 }
 const CategorySection = ({sectionTitle, items} : categorySectionProps) => {
   return (
-   <section className="bg-(--dark-background) pb-5 ">
+   <section className=" pb-5 ">
       <div className="flex  gap-4 max-w-325 mx-auto pb-5 pt-5 max-sm:px-2"> 
         <h3 className="max-sm:text-2xl">{sectionTitle}</h3> <Link
           href="/news"

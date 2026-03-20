@@ -1,14 +1,27 @@
-import { filters, latestArticles } from '@/lib/testData';
+import { latestArticles } from '@/lib/testData';
 import Image from 'next/image';
 import React from 'react'
 import SidebarLayout from './SidebarLayout';
+import { Ellipsis } from 'lucide-react';
+
+
+type filter = "action" |  "role-playing" |  "strategy" | " shooters" | " simulator" | "sports/racing" | "multiplayer/coop" | "your posts" | "favorites" | "all" | "tech" | "games";
 
 
 
 
-const Newslayout = () => {
+
+interface NewsLayout {
+  sectionTitle:string,
+  filters:filter[];
+}
+
+
+
+
+const Newslayout = ( {sectionTitle, filters } : NewsLayout) => {
   return (
-   <div className="min-h-screen  text-white font-sans lg:mx-45">
+   <div className="min-h-screen  text-white font-sans max-w-325 mx-auto">
       <div className="py-5">
         <div className="flex gap-8">
  
@@ -17,16 +30,16 @@ const Newslayout = () => {
  
             {/* Section Title */}
        <h2 className="text-2xl font-extrabold uppercase tracking-widest mb-5">
-              აქტივობა
+              {sectionTitle}
             </h2>
  
             {/* Filter Tabs */}
-            <div className="flex gap-2 mb-6 flex-wrap">
+               <div className="flex gap-2 mb-6 flex-wrap">
               {filters.map((filter) => (
                 <button
                   key={filter}
                   className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded transition-colors ${
-                    filter === "ALL"
+                    filter === "all"
                       ? "bg-orange-500 text-white"
                       : "bg-[#2e2e2e] text-gray-300 hover:bg-[#3a3a3a]"
                   }`}
@@ -94,10 +107,13 @@ const Newslayout = () => {
               ))}
             </div>
           </div>
- 
-       
+
         </div>
+
+         
+
       </div>
+       <span className='flex justify-center transition-all '><Ellipsis size={60} className='bg-gray-700 ring ring-white/20 hover:opacity-95 hover:scale-105 duration-75 cursor-pointer rounded-2xl w-25 my-10'/> </span>
     </div>
   )
 }
