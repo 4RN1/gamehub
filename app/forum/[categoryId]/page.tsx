@@ -1,11 +1,11 @@
 import Link from 'next/link'
 
 const threads = [
-  { id: '1', title: 'Best action games of 2024 — full ranking', author: 'john_doe', replies: 44, views: 1200, date: 'Jan 15', tag: 'hot', lastAuthor: 'pixel_pro', lastTime: '2h ago' },
-  { id: '2', title: 'God of War vs Devil May Cry — which combat system wins?', author: 'jane_smith', replies: 25, views: 890, date: 'Jan 14', tag: null, lastAuthor: 'dev_guy', lastTime: '5h ago' },
-  { id: '3', title: 'Hidden gems you should try this year', author: 'dev_guy', replies: 8, views: 210, date: 'Jan 13', tag: 'new', lastAuthor: 'curious_cat', lastTime: '1d ago' },
-  { id: '4', title: 'Is FromSoftware the king of action RPGs now?', author: 'curious_cat', replies: 67, views: 3400, date: 'Jan 12', tag: null, lastAuthor: 'john_doe', lastTime: '2d ago' },
-  { id: '5', title: 'Share your setup — what do you play action games on?', author: 'pixel_pro', replies: 12, views: 340, date: 'Jan 11', tag: null, lastAuthor: 'jane_smith', lastTime: '3d ago' },
+  { id: '1', title: 'Best action games of 2024 — full ranking', author: 'john_doe', replies: 44, views: 1200, date: 'Jan 15', },
+  { id: '2', title: 'God of War vs Devil May Cry — which combat system wins?', author: 'jane_smith', replies: 25, views: 890, date: 'Jan 14',  },
+  { id: '3', title: 'Hidden gems you should try this year', author: 'dev_guy', replies: 8, views: 210, date: 'Jan 13',  },
+  { id: '4', title: 'Is FromSoftware the king of action RPGs now?', author: 'curious_cat', replies: 67, views: 3400, date: 'Jan 12',},
+  { id: '5', title: 'Share your setup — what do you play action games on?', author: 'pixel_pro', replies: 12, views: 340, date: 'Jan 11',},
 ]
 
 const avatarColors: { [key: string]: string } = {
@@ -60,19 +60,18 @@ const page = async ({ params }: { params: Promise<{ categoryId: string }> }) => 
       <div className="border border-[#3a3835] rounded-md overflow-hidden">
 
         {/* Table head */}
-        <div className="grid grid-cols-[1fr_80px_80px_140px] bg-[#1e1d1c] border-b border-[#3a3835] px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-[#7a7770]">
-          <div>Thread</div>
-          <div className="text-center">Replies</div>
-          <div className="text-center">Views</div>
-          <div>Last post</div>
-        </div>
+       <div className="grid grid-cols-[1fr_80px_80px] bg-[#1e1d1c] border-b border-[#3a3835]  py-2 text-[11px] font-semibold uppercase tracking-wider text-[#7a7770]">
+  <div className='pl-5'>Thread</div>
+  <div className="text-center">Replies</div>
+  <div className="text-center">Views</div>
+</div>
 
         {/* Rows */}
         {threads.map((thread) => (
           <Link
             key={thread.id}
             href={`/forum/${categoryId}/${thread.id}`}
-            className="grid grid-cols-[1fr_80px_80px_140px] bg-[#242321] hover:bg-[#2d2c2a] border-b border-[#3a3835] last:border-b-0 transition-colors"
+            className="grid grid-cols-[1fr_80px_80px] bg-[#242321] hover:bg-[#2d2c2a] border-b border-[#3a3835] last:border-b-0 transition-colors"
           >
             {/* Main cell */}
             <div className="flex items-start gap-3 px-4 py-3">
@@ -90,16 +89,6 @@ const page = async ({ params }: { params: Promise<{ categoryId: string }> }) => 
                   <span>{thread.author}</span>
                   <span>·</span>
                   <span>{thread.date}</span>
-                  {thread.tag === 'hot' && (
-                    <span className="bg-[#2c1e18] border border-[#c05020] text-[#e0683a] text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-sm">
-                      Hot
-                    </span>
-                  )}
-                  {thread.tag === 'new' && (
-                    <span className="bg-[#161f1a] border border-[#157a55] text-[#1da870] text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-sm">
-                      New
-                    </span>
-                  )}
                 </div>
               </div>
             </div>
@@ -119,10 +108,7 @@ const page = async ({ params }: { params: Promise<{ categoryId: string }> }) => 
             </div>
 
             {/* Last post */}
-            <div className="flex flex-col justify-center border-l border-[#3a3835] px-4 py-3 gap-0.5">
-              <span className="text-xs font-medium text-[#e2dfd8]">{thread.lastAuthor}</span>
-              <span className="text-[11px] text-[#7a7770]">{thread.lastTime}</span>
-            </div>
+            
           </Link>
         ))}
       </div>
