@@ -1,13 +1,10 @@
+import ForumLayout from "@/components/ForumLayout"
 
 
 const forum = () => {
   return (
     <div>
-      
-
-        <p className="text-4xl  ">sfjnsdkjfnksdjnfjksd</p>
-
-
+        <ForumLayout totalThreads={250}/>
     </div>
   )
 }
