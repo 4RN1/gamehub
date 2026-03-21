@@ -1,8 +1,9 @@
 import BackButton from "@/components/BackButton";
 import PostMenu from "@/components/PostMenu";
+import ReplySection from "@/components/ReplySection";
 import { Bookmark, Eye, Heart, MessageCircleReply } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+
 
 
 
@@ -25,7 +26,7 @@ const page = async ({ params }: { params: Promise<{ postId: string }> }) => {
   return (
     <>
       {/* User info , posted date */}
-      <section className="min-h-screen  max-w-200 mx-auto">
+      <section className="min-h-screen  max-w-200 mx-auto ">
         <div className="flex   mt-10 items-center  justify-between">
           <div className="flex items-center gap-2">
             <BackButton />
@@ -72,12 +73,15 @@ const page = async ({ params }: { params: Promise<{ postId: string }> }) => {
             <p className="flex gap-1"><MessageCircleReply size={25}/><span>{userPost.replies}</span> </p>
             <p className="flex gap-1"><Bookmark size={25}/><span>{userPost.favorites}</span></p>
             <p className="flex gap-1"><Eye size={25}/><span>{userPost.views}</span></p>
-
-
             </div>
 
         </div>
+
+
+<ReplySection/>
+        
       </section>
+
     </>
   );
 };
