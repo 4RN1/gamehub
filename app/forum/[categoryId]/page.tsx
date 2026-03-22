@@ -23,7 +23,7 @@ const page = async ({ params }: { params: Promise<{ categoryId: string }> }) => 
   const { categoryId } = await params
 
   return (
-    <div className="min-h-screen bg-[#1a1918] px-6 py-7 font-sans">
+    <div className="min-h-screen bg-[#1a1918] px-6 py-7 font-sans max-w-350 mx-auto">
 
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-xs text-[#7a7770] mb-5">

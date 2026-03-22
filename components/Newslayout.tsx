@@ -1,13 +1,13 @@
+"use client"
+
 import { latestArticles } from '@/lib/testData';
 import Image from 'next/image';
-import React from 'react'
-import SidebarLayout from './SidebarLayout';
 import { Ellipsis } from 'lucide-react';
+import { useState } from 'react';
 
 
-type filter = "action" |  "role-playing" |  "strategy" | " shooters" | " simulator" | "sports/racing" | "multiplayer/coop" | "your posts" | "favorites" | "all" | "tech" | "games";
 
-
+type filter = "action" |  "role-playing" |  "strategy" | "shooters" | "simulator" | "sports/racing" | "multiplayer/coop" | "your posts" | "favorites" | "all" | "tech" | "games";
 
 
 
@@ -20,6 +20,13 @@ interface NewsLayout {
 
 
 const Newslayout = ( {sectionTitle, filters } : NewsLayout) => {
+
+const [filterByCategory, setFilterByCategory] = useState("all")
+
+
+
+
+
   return (
    <div className="min-h-screen  text-white font-sans max-w-325 mx-auto">
       <div className="py-5">
@@ -38,9 +45,10 @@ const Newslayout = ( {sectionTitle, filters } : NewsLayout) => {
               {filters.map((filter) => (
                 <button
                   key={filter}
-                  className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded transition-colors ${
-                    filter === "all"
-                      ? "bg-orange-500 text-white"
+                  onClick={()=> setFilterByCategory(filter)}
+                  className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded transition-colors cursor-pointer  ${
+                    filterByCategory === filter
+                      ? "bg-orange-500 text-white hover:bg-orange-400"
                       : "bg-[#2e2e2e] text-gray-300 hover:bg-[#3a3a3a]"
                   }`}
                 >
@@ -57,7 +65,7 @@ const Newslayout = ( {sectionTitle, filters } : NewsLayout) => {
                   className="flex gap-5 cursor-pointer group"
                 >
                   {/* Thumbnail */}
-                  <div className="relative w-52 h-36 shrink-0 overflow-hidden rounded">
+                  <div className="relative w-70 h-50 shrink-0 overflow-hidden rounded">
                     <div className="w-full h-full bg-[#2e2e2e] rounded" />
                     
                     <Image
@@ -73,7 +81,7 @@ const Newslayout = ( {sectionTitle, filters } : NewsLayout) => {
                   <div className="flex flex-col justify-center gap-2">
                     <span className="text-gray-400 text-xs">{article.timeAgo}</span>
  
-                    <h3 className="text-lg font-extrabold leading-snug group-hover:text-orange-400 transition-colors">
+                    <h3 className="text-xl font-extrabold leading-snug group-hover:text-orange-400 transition-colors">
                       {article.title}
                     </h3>
  

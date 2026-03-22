@@ -12,13 +12,13 @@ const pathname = usePathname();
 
   return (
     <header className="bg-(--dark-background)">
-      <div className="py-4 border-b border-[#333] flex justify-center">
+      <div className="py-2 border-b border-[#333] flex justify-center">
         {/* logo */}
 
         <div className=" flex items-center justify-between px-20 w-full  max-w-375">
         <div>
           <Link href="/">
-            <h1>GAMEHUB</h1>
+            <h1 className="text-4xl">GAMEHUB</h1>
           </Link>
         </div>
         <div>
