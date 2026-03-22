@@ -236,3 +236,17 @@ export const userTestInfo = {
 
   
 }
+
+
+export const gg = [
+  { 
+    id: 1,
+    title: "GTA 6-ის გამოსვლის თარიღი დადასტურდა ",
+    img: "/assets/test5.avif"
+  },
+  {
+    id: 2,
+    title: "Elden Ring-ის კიდევ ერთი რეკორდი",
+    img: "/assets/test7.webp"
+  },
+]
