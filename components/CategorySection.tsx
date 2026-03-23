@@ -7,17 +7,18 @@ import Image from "next/image";
 interface categorySectionProps {
 
     sectionTitle:string,
+    category:string,
     items:{ date:string,
       title:string,
         img:string}[]
     
 }
-const CategorySection = ({sectionTitle, items} : categorySectionProps) => {
+const CategorySection = ({sectionTitle, items, category} : categorySectionProps) => {
   return (
    <section className=" pb-5 ">
       <div className="flex  gap-4 max-w-325 mx-auto pb-5 pt-5 max-sm:px-2"> 
         <h3 className="max-sm:text-2xl">{sectionTitle}</h3> <Link
-          href="/news"
+          href={`/news/${category}`}
           className="mt-2 flex items-center gap-1 text-[#d3d3d3] font-bold text-md  hover:text-[#f47938] transition-all delay-5">
            მეტი <span className="text-[#f47938] "> <MoveRight size={18}  /></span>
         </Link>

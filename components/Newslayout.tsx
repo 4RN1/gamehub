@@ -28,7 +28,7 @@ const [filterByCategory, setFilterByCategory] = useState("all")
 
 
   return (
-   <div className="min-h-screen  text-white font-sans max-w-325 mx-auto">
+   <div className="min-h-screen  text-white font-sans max-w-325 mx-auto max-sm:px-5">
       <div className="py-5">
         <div className="flex gap-8">
  
@@ -36,12 +36,12 @@ const [filterByCategory, setFilterByCategory] = useState("all")
           <div className="flex-1">
  
             {/* Section Title */}
-       <h2 className="text-2xl font-extrabold uppercase tracking-widest mb-5">
+       <h2 className="text-2xl font-extrabold uppercase tracking-widest mb-5 max-sm:text-center">
               {sectionTitle}
             </h2>
  
             {/* Filter Tabs */}
-               <div className="flex gap-2 mb-6 flex-wrap">
+               <div className="flex gap-2 mb-6 flex-wrap max-sm:justify-center">
               {filters.map((filter) => (
                 <button
                   key={filter}
@@ -62,11 +62,11 @@ const [filterByCategory, setFilterByCategory] = useState("all")
               {latestArticles.map((article) => (
                 <article
                   key={article.id}
-                  className="flex gap-5 cursor-pointer group"
+                  className="flex gap-5 cursor-pointer group max-sm:flex-col max-sm:items-center max-sm:mb-5"
                 >
                   {/* Thumbnail */}
-                  <div className="relative w-70 h-50 shrink-0 overflow-hidden rounded">
-                    <div className="w-full h-full bg-[#2e2e2e] rounded" />
+                  <div className="relative w-79 h-55 shrink-0 overflow-hidden rounded ">
+                    <div className="w-full h-full bg-[#2e2e2e] rounded " />
                     
                     <Image
                       src={article.image}
@@ -78,14 +78,14 @@ const [filterByCategory, setFilterByCategory] = useState("all")
                   </div>
  
                   {/* Text */}
-                  <div className="flex flex-col justify-center gap-2">
+                  <div className="flex flex-col justify-center gap-2 max-sm:items-center">
                     <span className="text-gray-400 text-xs">{article.timeAgo}</span>
  
-                    <h3 className="text-xl font-extrabold leading-snug group-hover:text-orange-400 transition-colors">
+                    <h3 className="text-xl font-extrabold leading-snug group-hover:text-orange-400 transition-colors max-sm:text-center">
                       {article.title}
                     </h3>
  
-                    <p className="text-sm text-gray-400 leading-relaxed line-clamp-2">
+                    <p className="text-sm text-gray-400 leading-relaxed line-clamp-2 max-sm:text-center">
                       {article.excerpt}
                     </p>
  

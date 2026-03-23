@@ -15,8 +15,8 @@ const pathname = usePathname();
 
 
 
-    <footer className='bg-(--dark-background) border-t border-[#333]'>
-      <div className='grid grid-cols-3 gap-8 px-8 py-12 max-sm:grid-cols-1 '>
+    <footer className='bg-(--dark-background) border-t border-[#333] '>
+      <div className='grid grid-cols-3 gap-8 px-8 py-12 max-sm:grid-cols-1 md:place-items-center'>
 
         <div>
           <h2 className='text-4xl font-medium'>GAMEHUB</h2>
