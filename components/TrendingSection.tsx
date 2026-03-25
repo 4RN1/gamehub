@@ -32,12 +32,12 @@ const TrendingSection = () => {
   <div className="max-w-325 mx-auto grid md:grid-cols-3 gap-5  max-sm:grid-cols-1">
     
     {/* Main featured - 3 cols */}
- <div className="col-start-1 col-end-3 h-130 row-start-1 row-end-2 bg-gray-600 rounded-xl relative overflow-hidden group cursor-pointer max-sm:col-span-full max-sm:h-72">
+ <Link href="#" className="col-start-1 col-end-3 h-130 row-start-1 row-end-2 bg-gray-600 rounded-xl relative overflow-hidden group cursor-pointer max-sm:col-span-full max-sm:h-72">
   <Image src='/assets/test3.webp' fill alt="random image" className="object-cover object-left group-hover:scale-105 transition-transform duration-300 " />
   <div className="absolute bottom-0 left-0 w-full pb-5 pl-5 bg-linear-to-t from-black/90 via-black/40 to-transparent">
     <h2 className="text-white text-5xl font-bold leading-snug ">ახალი მარიოს თამაში</h2>
   </div>
-</div>
+</Link>
 
     {/* Sidebar - 1 col, full height */}
   <div className="col-span-1 row-start-1 row-end-2 h-full min-h-96 max-sm:col-span-full max-sm:row-auto ml-5">

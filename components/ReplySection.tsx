@@ -65,7 +65,7 @@ const [reply, setReply] = useState<number | string | null>(null)
     <div className='flex mt-3 gap-3'>
       <p className='flex gap-1'>
         <Heart size={25} className='hover:scale-110 cursor-pointer'/>
-        <span>{item.likes.toLocaleString()}</span>
+        <span>{item.likes}</span>
       </p>
       <p><MessageCircleReply onClick={() => setReply(reply === item.id? null : item.id)} size={25} className='hover:scale-110 cursor-pointer'/></p>
     </div>

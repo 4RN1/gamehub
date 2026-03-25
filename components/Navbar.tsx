@@ -23,7 +23,7 @@ const pathname = usePathname();
         </div>
         <div>
             {/*ანგარიშის icon */}
-           <Link href="/login"> <AvatarIcon /></Link>
+           <Link href="/account"> <AvatarIcon /></Link>
         </div>
         </div>
       </div>
