@@ -4,6 +4,7 @@ import { latestArticles } from '@/lib/testData';
 import Image from 'next/image';
 import { Ellipsis } from 'lucide-react';
 import { useState } from 'react';
+import Link from 'next/link';
 
 
 
@@ -60,8 +61,9 @@ const [filterByCategory, setFilterByCategory] = useState("all")
             {/* Article List */}
             <div className="flex flex-col gap-6 ">
               {latestArticles.map((article) => (
-                <article
+                <Link
                   key={article.id}
+                  href = {`/news/${article.category}/${article.id}`}
                   className="flex gap-5 cursor-pointer group max-sm:flex-col max-sm:items-center max-sm:mb-5"
                 >
                   {/* Thumbnail */}
@@ -111,7 +113,7 @@ const [filterByCategory, setFilterByCategory] = useState("all")
                       </svg>
                     </div>
                   </div>
-                </article>
+                </Link>
               ))}
             </div>
           </div>

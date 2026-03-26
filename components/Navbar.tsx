@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 const Navbar = () => {
 const pathname = usePathname();
-  const hideNavbar = ["/login", "/registration"].includes(pathname);
+  const hideNavbar = ["/login", "/registration"].includes(pathname) || pathname.startsWith("/admin")
 
   if (hideNavbar) return null;
 
