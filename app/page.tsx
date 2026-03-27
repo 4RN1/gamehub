@@ -10,9 +10,9 @@ export default function Home() {
   return (
 <main>
 <TrendingSection/>
-<CategorySection sectionTitle="კონსოლის თამაშები" items={testItems}  category="console"/>
-<CategorySection sectionTitle="კომპიუტერის თამაშები" items={testItems} category="pc"/>
 <CategorySection sectionTitle="ტექ შეთავაზებები" items={testItems} category="tech"/>
+<CategorySection sectionTitle="კონსოლის თამაშები" items={testItems} category="console"/>
+
 <Newslayout sectionTitle="უახლესი ამბები" filters={['all' , 'games' , 'tech']}/>
 </main>
   );

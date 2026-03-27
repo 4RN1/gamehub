@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
+import ScrollToTopBtn from "@/components/ScrollToTopBtn";
 
 
 
@@ -22,8 +22,9 @@ export default function RootLayout({
       <body>
 
 <Navbar/>
-
+<ScrollToTopBtn />
         {children}
+
 
 <Footer/>
       </body>

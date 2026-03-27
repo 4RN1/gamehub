@@ -29,9 +29,9 @@ const [filterByCategory, setFilterByCategory] = useState("all")
 
 
   return (
-   <div className="min-h-screen  text-white font-sans max-w-325 mx-auto max-sm:px-5">
+   <div className="min-h-screen  text-white font-sans max-w-440 mx-auto max-sm:px-5">
       <div className="py-5">
-        <div className="flex gap-8">
+        <div className="flex gap-8 max-lg:flex-col">
  
           {/* ── Main Content ── */}
           <div className="flex-1">
@@ -74,6 +74,7 @@ const [filterByCategory, setFilterByCategory] = useState("all")
                       src={article.image}
                       alt={article.title}
                       fill
+                      sizes="width:100%"
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                    
@@ -118,9 +119,23 @@ const [filterByCategory, setFilterByCategory] = useState("all")
             </div>
           </div>
 
+              {/* AD CONTAINERS */}
+                <div className='lg:w-100 flex flex-col items-center h-full gap-10  max-lg:hidden '>
+
+            <Link href="#" className='lg:w-70  w-full h-150 relative'>
+              <Image src="/assets/ad.png" alt='asd' fill objectPosition='center'/>
+          </Link>
+
+          
+            <Link href="#" className='w-70 bg- h-150 relative'>
+              <Image src="/assets/ad2.png" alt='asd' fill />
+          </Link>
+              </div>
+
+
         </div>
 
-         
+             
 
       </div>
        <span className='flex justify-center transition-all '><Ellipsis size={60} className='bg-gray-700 ring ring-white/20 hover:opacity-95 hover:scale-105 duration-75 cursor-pointer rounded-2xl w-25 my-10'/> </span>

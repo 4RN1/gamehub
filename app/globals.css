@@ -75,3 +75,26 @@ body {
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.35);
 }
+
+
+.swiper-button-prev,
+.swiper-button-next {
+  top: auto !important;
+  bottom: 16px !important;
+  left: auto !important;
+  width: 36px !important;
+  height: 36px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 50% !important;
+  color: white !important;
+  padding: 10px;
+}
+
+.swiper-button-prev {
+  right: 60px !important;
+}
+
+.swiper-button-next {
+  right: 16px !important;
+}

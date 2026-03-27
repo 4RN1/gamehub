@@ -215,6 +215,8 @@ export const testItems = [
     
     img: "/assets/test5.avif"
   }
+
+  
 ]
 
 
@@ -250,3 +252,48 @@ export const gg = [
     img: "/assets/test7.webp"
   },
 ]
+
+
+export const swiperContentData = [
+  
+  { 
+    id: 1,
+    title: "GTA 6-ის ახალი თრეილერი რეკორდებს ამყარებს",
+    img: "/assets/test5.avif",
+    date: "12.04.2026",
+    category: "Gaming"
+  },
+
+  { 
+    id: 2,
+    title: "PlayStation 6-ზე პირველი დეტალები გავრცელდა",
+    img: "/assets/test1.jpg",
+    date: "10.04.2026",
+    category: "Tech"
+  },
+
+  { 
+    id: 3,
+    title: "AI ტექნოლოგიები 2026 წელს: რა გველოდება?",
+    img: "/assets/test2.webp",
+    date: "08.04.2026",
+    category: "AI"
+  },
+
+  { 
+    id: 4,
+    title: "ყველაზე პოპულარული თამაშები ამ თვეში",
+    img: "/assets/test3.webp",
+    date: "05.04.2026",
+    category: "Gaming"
+  },
+
+  { 
+    id: 5,
+    title: "Apple-ის ახალი პროდუქტის პრეზენტაცია გაჟონა",
+    img: "/assets/test4.jpg",
+    date: "02.04.2026",
+    category: "Tech"
+  },
+];
+  

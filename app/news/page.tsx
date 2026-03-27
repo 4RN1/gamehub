@@ -11,7 +11,7 @@ const news = () => {
   return (
     <>
 
-<section className=" max-w-325 mx-auto mb-5">
+<section className=" max-w-400 mx-auto mb-5">
 
 <NewsTitleLayout title = "ახალი ამბები"  desc = "ყველაფერი, რაც გეიმერს აინტერესებს — ახალი ამბები, ტექნიკა, ჭორები და ინფორმაცია პოპულარული თამაშების შესახებ."/>
 
