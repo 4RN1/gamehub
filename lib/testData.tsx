@@ -256,44 +256,54 @@ export const gg = [
 
 export const swiperContentData = [
   
-  { 
-    id: 1,
-    title: "GTA 6-ის ახალი თრეილერი რეკორდებს ამყარებს",
-    img: "/assets/test5.avif",
-    date: "12.04.2026",
-    category: "Gaming"
-  },
+ { 
+  id: 1,
+  title: "GTA 6-ის ახალი თრეილერი რეკორდებს ამყარებს",
+  description: "Rockstar Games-ის მოსალოდნელი თამაშის ახალი თრეილერი გამოქვეყნებიდან 24 საათში 100 მილიონ ნახვას გადააჭარბა.",
+  img: "/assets/test5.avif",
+  imgPosition: "center",
+  date: "12 აპრილი 2026",
+  category: "Gaming"
+},
 
-  { 
-    id: 2,
-    title: "PlayStation 6-ზე პირველი დეტალები გავრცელდა",
-    img: "/assets/test1.jpg",
-    date: "10.04.2026",
-    category: "Tech"
-  },
+{ 
+  id: 2,
+  title: "PlayStation 6-ზე პირველი დეტალები გავრცელდა",
+  description: "Sony-მ PlayStation 6-ის შესახებ პირველი ოფიციალური ინფორმაცია გაავრცელა, მათ შორის სავარაუდო გამოსვლის თარიღი.",
+  img: "/assets/test11.jpg",
+  imgPosition: "center",
+  date: "10 აპრილი 2026",
+  category: "Tech"
+},
 
-  { 
-    id: 3,
-    title: "AI ტექნოლოგიები 2026 წელს: რა გველოდება?",
-    img: "/assets/test2.webp",
-    date: "08.04.2026",
-    category: "AI"
-  },
+{ 
+  id: 3,
+  title: "AI ტექნოლოგიები 2026 წელს: რა გველოდება?",
+  description: "ხელოვნური ინტელექტის სფეროში 2026 წელი მნიშვნელოვანი ცვლილებების წელი გახდება — ექსპერტები პროგნოზებს იძლევიან.",
+  img: "/assets/test22.webp",
+  imgPosition: "center",
+  date: "8 აპრილი 2026",
+  category: "Tech"
+},
 
-  { 
-    id: 4,
-    title: "ყველაზე პოპულარული თამაშები ამ თვეში",
-    img: "/assets/test3.webp",
-    date: "05.04.2026",
-    category: "Gaming"
-  },
+{ 
+  id: 4,
+  title: "ყველაზე პოპულარული თამაშები ამ თვეში",
+  description: "აპრილის ყველაზე გაყიდვადი და სათამაშო პლატფორმებზე ყველაზე მეტად თამაშადი თამაშების სრული სია.",
+  img: "/assets/test44.png",
+  imgPosition: "center",
+  date: "5 აპრილი 2026",
+  category: "Gaming"
+},
 
-  { 
-    id: 5,
-    title: "Apple-ის ახალი პროდუქტის პრეზენტაცია გაჟონა",
-    img: "/assets/test4.jpg",
-    date: "02.04.2026",
-    category: "Tech"
-  },
+{ 
+  id: 5,
+  title: "Assassin's Creed-ის ახალი ნაწილის შეფასება",
+  description: "Ubisoft-ის ფრენჩაიზის უახლესი თამაში კრიტიკოსებისა და მოთამაშეების შერეულ შეფასებებს იღებს გამოსვლიდან პირველ კვირაში.",
+  img: "/assets/test33.jpg",
+  imgPosition: "center",
+  date: "2 აპრილი 2026",
+  category: "Tech"
+},
 ];
   
