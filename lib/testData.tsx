@@ -163,12 +163,12 @@ export const trendingArticles = [
   {
     id: 2,
     title: "A Switch 2 Launch Title Has Shadow Dropped On Other Platforms",
-    image: "/assets/test2.webp",
+    image: "/assets/test22.webp",
   },
   {
     id: 3,
     title: "The Best Xbox Games You Still Have To Buy (Even With Game Pass)",
-    image: "/assets/test2.webp",
+    image: "/assets/test7.webp",
   },
 ];
 export const testItems = [
@@ -293,8 +293,8 @@ export const swiperContentData = [
 },
 ];
 export const threadData = {
-    user:"killerGirl2005",
-    userImg:"/assets/pfp2.webp",
+    user:"Nickname2005",
+    userImg:"/assets/gg.jpg",
     createdDate:"16 april 2026",
     slug:"#",
     threadTitle:"Ram Problem",
