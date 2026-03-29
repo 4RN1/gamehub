@@ -22,8 +22,8 @@ const categories = {
 
 const ForumLayout = () => {
   return (
-    <div className="min-h-screen bg-[#1a1918] flex justify-center">
-      <div className="w-full max-w-350 rounded-lg px-6 py-5 mx-auto">
+    <div className="min-h-screen bg-[#1a1918] flex justify-center mx-4">
+      <div className="w-full max-w-350 rounded-lg  py-5  ">
 
         {/* Page Title */}
         <h1 className="text-gray-400 text-3xl font-semibold font-sans mb-6 ml-4 text-left">
@@ -31,7 +31,7 @@ const ForumLayout = () => {
         </h1>
 
         {/* Support Section */}
-        <section className="ml-4 w-full border border-[#3a3835] rounded-sm mb-10">
+        <section className="w-full border border-[#3a3835] rounded-sm mb-10">
           <h3 className="text-emerald-700 bg-black px-5 py-3 text-sm font-semibold font-sans">
             Support
           </h3>
@@ -56,7 +56,7 @@ const ForumLayout = () => {
         </section>
 
         {/* Discussion Section */}
-        <section className="ml-4 w-full border border-[#3a3835] rounded-sm">
+        <section className=" w-full border border-[#3a3835] rounded-sm">
           <h3 className="text-emerald-700 bg-black px-5 py-3 text-sm font-semibold font-sans">
             DISCUSSION
           </h3>

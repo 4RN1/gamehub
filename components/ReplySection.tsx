@@ -45,7 +45,7 @@ const [reply, setReply] = useState<number | string | null>(null)
 
 
 
-<div className='px-11 py-10'>
+<div className='px-11 pb-10'>
 
     <h3 className='my-5'>Replies</h3>
 {userReply.map((item) => (

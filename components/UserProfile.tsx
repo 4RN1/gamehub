@@ -42,7 +42,7 @@ export default function UserProfile({
   bio,
 }: UserProfileInfo) {
   return (
-    <section className="max-w-325 mx-auto lg:my-2 lg:rounded-md  overflow-hidden  ">
+    <section className="max-w-440 mx-auto lg:my-2 lg:rounded-md  overflow-hidden  ">
       {/* ── Banner with overlaid content ── */}
       {accountCreated && (
         <div
@@ -134,18 +134,7 @@ export default function UserProfile({
 
 
 
-      <div className="flex  mt-10 gap-10">
-        <div className="">
-          <h5 className="mb-2 font-medium">ჩემს შესახებ</h5>
-          <div className="bg-[#181D36] p-3 rounded-md border border-white/15">
-            <p>
-             {bio}
-            </p>
-          </div>
-        </div>
-<SidebarLayout />
-        
-      </div>
+
 
     </section>
   );

@@ -51,8 +51,6 @@ export const socialLinks = [
   },
 ];
 
-
-
 export const latestArticles = [
   {
     id: 1,
@@ -112,7 +110,6 @@ export const latestArticles = [
   },
 ];
 
-
 export const latestTestNews = [
   { 
     id: 1,
@@ -135,7 +132,6 @@ export const latestTestNews = [
     img: "/assets/test4.jpg"
   }
 ]
-
 export const sidebarNews = [
   {
     id: 1,
@@ -158,8 +154,6 @@ export const sidebarNews = [
     img: "/assets/test7.webp"
   }
 ]
-
-
 export const trendingArticles = [
   {
     id: 1,
@@ -177,8 +171,6 @@ export const trendingArticles = [
     image: "/assets/test2.webp",
   },
 ];
-
-
 export const testItems = [
   {
     id: 1,
@@ -218,8 +210,6 @@ export const testItems = [
 
   
 ]
-
-
 export const userTestInfo = {
   bannerUrl:"/assets/777.jpg", 
   profileImageUrl:"/assets/gg.jpg",
@@ -238,8 +228,6 @@ export const userTestInfo = {
 
   
 }
-
-
 export const gg = [
   { 
     id: 1,
@@ -252,8 +240,6 @@ export const gg = [
     img: "/assets/test7.webp"
   },
 ]
-
-
 export const swiperContentData = [
   
  { 
@@ -306,4 +292,12 @@ export const swiperContentData = [
   category: "Tech"
 },
 ];
-  
+export const threadData = {
+    user:"killerGirl2005",
+    userImg:"/assets/pfp2.webp",
+    createdDate:"16 april 2026",
+    slug:"#",
+    threadTitle:"Ram Problem",
+    threadText:"2600 MHz is basically the E-core base clock, so your P-cores probably aren’t boosting A few quick things to check: • Windows power plan → High Performance • CPU temps (could be thermal throttling) • Turbo Boost enabled in BIOS • H610 boards sometimes limit CPU power, which can stop boosts Also check HWInfo per-core clocks, Afterburner sometimes shows averages....",
+    threadViews:500
+}

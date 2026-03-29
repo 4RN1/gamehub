@@ -1,73 +1,91 @@
+import GoogleSignUpBtn from '@/components/GoogleSignUpBtn'
 import Link from 'next/link'
 
 
 const page = () => {
   return (
-  <div className="flex justify-center items-center  min-h-screen bg-[url('/assets/bbb.jpg')] bg-cover">
-      <div className="absolute inset-0 bg-gray-900/70"></div>
-      <div className="bg-[rgb(40,34,59)] w-215.5 h-150  rounded-[15px] flex z-10">
-        {/* LEFT SIDE */}
-        <div className="ml-3.75 mt-3.75 rounded-[15px] pl-5 pt-5 h-142.5 w-105 bg-[url('/assets/login-image.jpg')] brightness-95 bg-cover bg-center bg-no-repeat">
-          <Link href="/" className="py-2 px-3 bg-purple-600 text-white border-none rounded-[10px] cursor-pointer active:bg-white active:text-black transition">
-            დაბრუნება მთავარზე
-          </Link>
-        </div>
+   <div className="relative min-h-screen flex items-center justify-center bg-[url('/assets/bbb.jpg')] bg-cover bg-center">
 
-        {/* RIGHT SIDE */}
-        <div className="bg-[rgb(40,34,59)] h-142.5 mt-3.75 w-105 pl-15 pt-12.5">
-          <h1 className="text-white font-sans text-xl">შექმენით ანგარიში</h1>
+  {/* Overlay */}
+   <div className="absolute inset-0 bg-gray-900/70"></div>
 
-          <p className="text-gray-400 text-[12px] mt-3.75 font-sans flex gap-3">
-            უკვე გაქვთ ანგარიში?{" "}
-            <Link
-              href="/login"
-              className="block text-[12px] text-purple-500 font-sans"
-            >
-              შესვლა
-            </Link>
-          </p>
+  {/* Card */}
+  <div className="relative z-10 w-full max-w-4xl  max-lg:max-w-md mx-4 bg-[rgb(40,34,59)] rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
 
-          <input
-            type="text"
-            placeholder="Nickname"
-            className="mt-7.5 h-10 max-w-78 w-full pl-2.5 border border-white rounded-[3px] bg-transparent text-white "
-          />
+    {/* LEFT IMAGE */}
+    <div className="hidden lg:block bg-[url('/assets/login-image.jpg')] h-130 bg-cover bg-center relative">
+      <div className="absolute top-7 left-8">
+        <Link
+          href="/"
+          className="px-4 py-2 bg-purple-600 text-white rounded-lg text-md hover:bg-purple-700"
+        >
+          დაბრუნება მთავარზე
+        </Link>
+      </div>
+    </div>
 
-          <div className="flex flex-col  mt-5">
-            <input
-              type="text"
-              placeholder="Email"
-              className="h-10 max-w-78 w-full rounded-xs border border-white  pl-2.5 bg-transparent text-white"
-            />
+    {/* RIGHT FORM */}
+    <form className="flex flex-col justify-center px-6 py-5 sm:px-10">
 
-            <input
-              type="password"
-              placeholder="Password"
-              className="h-10 max-w-78 w-full rounded-xs border border-white my-5  pl-2.5 bg-transparent text-white"
-            />
+      <h1 className="text-white text-2xl mb-2">რეგისტრაცია</h1>
 
-              <input
-              type="password"
-              placeholder="Confrim Password"
-              className="h-10 max-w-78 w-full rounded-xs border border-white mb-5  pl-2.5 bg-transparent text-white"
-            />
+      <p className="text-gray-400 text-sm mb-4">
+         გაქვთ ანგარიში?{" "}
+        <Link href="/login" className="text-purple-400 hover:text-purple-600 ">
+          შესვლა
+        </Link>
+      </p>
 
-            <div className="mb-5 flex text-[12px] gap-2">
+      <input
+        type="text"
+        placeholder="Username"
+        className="w-full h-10 mb-4 px-3 border border-white/30 rounded bg-transparent text-white focus:outline-none focus:border-purple-500"
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        className="w-full h-10 mb-4 px-3 border border-white/30 rounded bg-transparent text-white focus:outline-none focus:border-purple-500"
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        className="w-full h-10 mb-4 px-3 border border-white/30 rounded bg-transparent text-white focus:outline-none focus:border-purple-500"
+      />
+
+      <input
+        type="password"
+        placeholder="Confirm Password"
+        className="w-full h-10 mb-4 px-3 border border-white/30 rounded bg-transparent text-white focus:outline-none focus:border-purple-500"
+      />
+
+      <div className="mb-5 flex text-[12px] gap-2">
               <label className="flex items-center gap-1 text-gray-400  font-sans cursor-pointer">
                 <input type="checkbox" className="w-3 h-3" />
                 ვეთანხმები{" "}
               </label>
-              <a href="#" className="text-purple-500">
+              <a href="#" className="text-purple-400 hover:text-purple-600">
                   წესები და პირობები
                 </a>
             </div>
-            <button className="h-10 w-78 border border-white rounded-xs text-white bg-transparent">
-              ანგარიშის შექმნა
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+
+      <button className="w-full h-10 cursor-pointer bg-purple-600 rounded text-white hover:bg-purple-700 transition ">
+        შესვლა
+      </button>
+
+<div className="flex items-center text-gray-400 text-sm my-4
+  before:content-[''] before:flex-1 before:border-b before:border-gray-600 before:mr-3
+  after:content-[''] after:flex-1 after:border-b after:border-gray-600 after:ml-3">
+ Or Sign in With
+</div>
+     
+
+    <GoogleSignUpBtn/>
+
+    </form>
+  </div>
+</div>
+  
   )
 }
 

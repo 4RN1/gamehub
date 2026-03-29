@@ -27,9 +27,9 @@ const page = async ({ params }: { params: Promise<{ postId: string }> }) => {
     <>
       {/* User info , posted date */}
       <section className="min-h-screen  max-w-200 mx-auto ">
-        <div className="flex   mt-10 items-center  justify-between">
-          <div className="flex items-center gap-2">
-            <BackButton />
+        <div className="flex   mt-10 items-center  max-sm:justify-around">
+          <div className="flex items-center  gap-2">
+            <BackButton  />
             <div className="w-12 h-12 rounded-full overflow-hidden shrink-0">
               <Image
                 src={userPost.userImg}
