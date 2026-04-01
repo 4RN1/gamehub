@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
+import AdminSidebar from "@/components/AdminSidebar";
 
 export default async function AdminLayout({
   children,
@@ -20,9 +21,11 @@ export default async function AdminLayout({
 //   }
 
   return (
-    <div>
+    <div className="flex">
       {/* optional: admin sidebar/navbar here later */}
-      <main>{children}</main>
+
+      <AdminSidebar />
+      <main className="w-full">{children}</main>
     </div>
   );
 }

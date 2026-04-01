@@ -19,6 +19,12 @@ const navLinks = [
 
 const SideNavbar = () => {
   const pathname = usePathname()
+  
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href)
+
+
+const [notificationsOpen, setNotificationsOpen] = useState(false)
 
   const hideNavbar =
     ["/login", "/registration"].includes(pathname) ||
@@ -26,9 +32,6 @@ const SideNavbar = () => {
 
   if (hideNavbar) return null
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href)
-const [notificationsOpen, setNotificationsOpen] = useState(false)
   return (
     <>
       {/* Desktop sidebar */}
@@ -83,7 +86,10 @@ const [notificationsOpen, setNotificationsOpen] = useState(false)
           
       </nav>
 
-   
+
+
+
+
       
     </>
   )
