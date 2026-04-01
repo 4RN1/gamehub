@@ -2,7 +2,7 @@ import CategorySection from "@/components/CategorySection";
 import Newslayout from "@/components/Newslayout";
 import TrendingSection from "@/components/TrendingSection";
 import { testItems } from "@/lib/testData";
-import { GET } from "./api/posts/route";
+import { GET } from "../api/posts/route";
 
 
 

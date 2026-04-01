@@ -6,11 +6,9 @@ import { usePathname } from "next/navigation";
 
 
 const Footer = () => {
-const pathname = usePathname();
-  const hideFooter = ["/login", "/registration"].includes(pathname)|| pathname.startsWith("/admin")
 
 
-  if (hideFooter) return null;
+
 
   return (
 

@@ -4,12 +4,7 @@ import { usePathname } from "next/navigation";
 import { IoGameController, IoSearch } from "react-icons/io5";
 
 const Navbar = () => {
-  const pathname = usePathname();
-  const hideNavbar =
-    ["/login", "/registration"].includes(pathname) ||
-    pathname.startsWith("/admin");
 
-  if (hideNavbar) return null;
 
   return (
    <header className="sticky top-0 z-50 bg-(--dark-background)">
