@@ -11,8 +11,7 @@ const page = () => {
   return (
   <main className="lg:ml-17 mx-auto">
    <UserProfile {...userTestInfo} />
-
-<ForumPosts {...threadData}/>
+   <ForumPosts {...threadData}/>
 
 
   </main>

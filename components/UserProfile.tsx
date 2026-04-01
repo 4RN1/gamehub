@@ -6,8 +6,6 @@ import Link from "next/link";
 import { socialLinks } from "@/lib/testData";
 import SidebarLayout from "./SidebarLayout";
 
-
-
 interface SocialLink {
   label: string;
   bg: string;
@@ -39,24 +37,20 @@ export default function UserProfile({
   uniqueId,
   country,
   stats,
-  bio,
 }: UserProfileInfo) {
   return (
-    <section className="max-w-440 mx-auto lg:my-2 lg:rounded-md  overflow-hidden  ">
-      {/* ── Banner with overlaid content ── */}
+    <section className="max-w-440 mx-auto lg:my-2 lg:rounded-md overflow-hidden">
       {accountCreated && (
         <div
-  className="relative bg-cover bg-center h-70"
-  style={{ backgroundImage: `url(${bannerUrl})` }}
->
-          {/* Gradient scrim — strong left, fades right */}
+          className="relative bg-cover bg-center h-70"
+          style={{ backgroundImage: `url(${bannerUrl})` }}
+        >
           <div className="absolute inset-0 bg-black/50" />
 
-          {/* Row: avatar + info on left, stats + button on right */}
-          <div className="relative z-10 flex items-end justify-between  pb-5 px-5 h-full">
+          <div className="relative z-10 flex items-end justify-between pb-5 px-2 h-full max-sm:flex-col max-sm:justify-end max-sm:items-start max-sm:gap-2">
             {/* Left side */}
-            <div className="flex items-end gap-4 relative left-10 ">
-              <div className="  w-20 h-20 md:w-32 md:h-32  overflow-hidden ring-2 ring-white/40 shrink-0 relative lg:rounded-xl">
+            <div className="flex items-end  gap-4 lg:relative lg:left-10 max-sm:mb-4">
+              <div className="w-27 h-27 md:w-32 md:h-32 overflow-hidden ring-2 ring-white/40 shrink-0 relative lg:rounded-xl rounded-xl">
                 <Image
                   src={profileImageUrl}
                   alt="Profile image"
@@ -76,66 +70,57 @@ export default function UserProfile({
                   <span className="text-white/60 text-xs">{country}</span>
                 </div>
 
-                {/* Social icons */}
-
-                <div className="flex flex-col items-start gap-2">
-                  <div className="flex gap-2">
-                    {socialLinks.map((s) => (
-                      <Link
-                        key={s.label}
-                        href={s.url}
-                        target="_parent"
-                        rel="noopener noreferrer"
-                        aria-label={s.label}
-                        className={`${s.bg} w-7 h-7 rounded-md flex items-center justify-center text-white hover:opacity-75 transition-opacity`}
-                      >
-                        {s.icon}
-                      </Link>
-                    ))}
-                  </div>
-
-                  <button className="bg-[#ffb84c] text-black font-semibold tracking-tight px-5 py-1 flex items-center gap-1 rounded-md hover:opacity-90 cursor-pointer">
-                    <UserRoundPlus size={18} /> გამოწერა
-                  </button>
-                </div>
+                <button className="bg-[#ffb84c] text-black font-semibold tracking-tight px-4 py-1  flex items-center justify-center gap-1 rounded-md hover:opacity-90 cursor-pointer text-sm">
+                  <UserRoundPlus size={18} /> გამოწერა
+                </button>
               </div>
             </div>
 
             {/* Right side */}
-
-            {/* Followers / Following */}
-            <div className="flex items-end  flex-col gap-5">
-              <div>
-                <button className="bg-[#454369] py-1.5 px-3 rounded-md border border-white/30 hover:opacity-90  cursor-pointer flex items-center gap-2">
-                  <SquarePen size={18} /> რედაქტირება
-                </button>
+            <div className="flex flex-row max-sm:w-full  items-center max-sm:justify-between   max-sm:gap-1 md:gap-10">
+              
+              <div className="flex items-center justify-end md:gap-2 max-sm:gap-1.5 flex-wrap ">
+                {socialLinks.map((s) => (
+                  <Link
+                    key={s.label}
+                    href={s.url}
+                    target="_parent"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className={`${s.bg} w-7 h-7 rounded-md flex items-center justify-center text-white hover:opacity-75 transition-opacity `}
+                  >
+                    {s.icon}
+                  </Link>
+                ))}
               </div>
 
-              <div className="flex gap-5">
-                <div className="flex items-center gap-1.5">
+
+               <div className="flex items-center gap-2 ">
+              <div className="flex gap-4">
+               
+                <div className="flex items-center gap-1.5 text-sm">
                   Followers
-                  <span className="text-white text-md font-semibold">
+                  <span className="text-white font-semibold">
                     {stats.followers}
                   </span>
                 </div>
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 text-sm">
                   Following
-                  <span className="text-white text-md font-semibold">
+                  <span className="text-white font-semibold">
                     {stats.following}
                   </span>
                 </div>
               </div>
+
+             
+</div>
+               <button className="bg-[#454369] py-1.5 px-3 absolute top-5 right-5 rounded-md border border-white/30 hover:opacity-90 cursor-pointer flex items-center gap-2 text-sm">
+                <SquarePen size={20} /> 
+              </button>
             </div>
           </div>
-          
-      
         </div>
       )}
-
-
-
-
-
     </section>
   );
 }

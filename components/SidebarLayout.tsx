@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 const SidebarLayout = () => {
   return (
-       <aside className="w-72 shrink-0">
+       <aside className="w-72 shrink-0 my-5">
             {/* Trending Header */}
             <div className="flex items-center gap-2 mb-5">
               <span className="w-4 h-4 bg-orange-500 rounded-sm shrink-0" />
