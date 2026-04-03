@@ -10,7 +10,6 @@ const links = [
     group: "Permissions",
     items: [
       { href: "/admin/users", label: "Users", icon: <Users size={20} /> },
-      { href: "/admin/groups", label: "Groups", icon: <Handshake size={20} /> },
     ]
   },
   {
