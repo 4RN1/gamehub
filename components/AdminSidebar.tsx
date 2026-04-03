@@ -16,7 +16,7 @@ const links = [
     group: "Content",
     items: [
       { href: "/admin/news-list", label: "News List", icon: <FaClipboardList size={20} /> },
-      { href: "/admin/add-post", label: "Add Post", icon: <MdPostAdd size={20} /> },
+      { href: "/admin/add-news", label: "Add News", icon: <MdPostAdd size={20} /> },
     ]
   },
   {

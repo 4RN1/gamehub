@@ -3,13 +3,7 @@
 import { useState } from "react";
 
 const initialUsers = [
-  { id: 1, name: "mamuka gamer", email: "mamukagamer@mail.com", role: "user", createdAt: "1 year ago", active: false },
-  { id: 2, name: "ninja_lord", email: "ninjalord@mail.com", role: "admin", createdAt: "2 months ago", active: true },
-  { id: 3, name: "pixel_queen", email: "pixelqueen@mail.com", role: "user", createdAt: "3 weeks ago", active: true },
-  { id: 4, name: "darkstar99", email: "darkstar99@mail.com", role: "moderator", createdAt: "6 months ago", active: false },
-  { id: 5, name: "xXshadowXx", email: "shadow@mail.com", role: "user", createdAt: "1 month ago", active: true },
-  { id: 6, name: "speedrunner", email: "speed@mail.com", role: "user", createdAt: "2 years ago", active: false },
-  { id: 7, name: "lagg3r", email: "lagg3r@mail.com", role: "user", createdAt: "5 days ago", active: true },
+
 ];
 
 const ROLE_COLORS: Record<string, string> = {

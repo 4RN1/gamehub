@@ -3,30 +3,7 @@ import { useState } from "react"
 import { Pencil, X, Copy } from "lucide-react"
 
 const threads = [
-  {
-    id: 1,
-    title: "How to rank up fast in Season 5?",
-    slug: "rank-up-fast-season-5",
-    author: "John Doe",
-    category: "General",
-    createdAt: "Apr 1, 2026, 10:30 am",
-  },
-  {
-    id: 2,
-    title: "Best weapons after update?",
-    slug: "best-weapons-update",
-    author: "Jane Smith",
-    category: "Gameplay",
-    createdAt: "Apr 1, 2026, 12:10 pm",
-  },
-  {
-    id: 3,
-    title: "Looking for squad members",
-    slug: "looking-for-squad",
-    author: "Mike",
-    category: "Community",
-    createdAt: "Apr 2, 2026, 09:00 am",
-  },
+
 ]
 
 export default function ThreadsList() {
@@ -127,6 +104,14 @@ export default function ThreadsList() {
 
                 </tr>
               ))}
+
+              {threads.length === 0 && (
+                <tr>
+                  <td colSpan={8} className="px-4 py-6 text-center text-sm text-gray-500">
+                    პოსტები ვერ მოიძებნა
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

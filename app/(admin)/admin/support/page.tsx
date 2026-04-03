@@ -3,27 +3,7 @@ import { useState } from "react";
 import { X } from "lucide-react";
 
 const tickets = [
-  {
-    id: 1,
-    subject: "I lost my account",
-    user: "John Doe",
-    status: "Open",
-    createdAt: "Apr 2, 2026, 10:30 am",
-  },
-  {
-    id: 2,
-    subject: "Payment not working",
-    user: "Anna",
-    status: "Pending",
-    createdAt: "Apr 2, 2026, 11:00 am",
-  },
-  {
-    id: 3,
-    subject: "Bug in matchmaking",
-    user: "Mike",
-    status: "Closed",
-    createdAt: "Apr 2, 2026, 12:00 pm",
-  },
+
 ];
 
 const statusStyles: Record<string, string> = {
@@ -153,7 +133,7 @@ export default function SupportList() {
               {filtered.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="px-4 py-8 text-center text-sm text-gray-400">
-                    No tickets match your filters.
+                    შენიშვნები არ მოიძებნა.
                   </td>
                 </tr>
               ) : (
