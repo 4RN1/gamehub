@@ -7,7 +7,13 @@ import { gg } from "@/lib/testData"
 
 
 
-const news = () => {
+const news = async () => {
+
+  
+const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
+const newsPosts = await res.json()
+
+
   return (
     <>
 
@@ -20,7 +26,7 @@ const news = () => {
 </div> 
 
 
-<Newslayout sectionTitle="უახლესი" filters={[ "all", "action" ,"role-playing" , "strategy" , "shooters", "simulator", "sports/racing", "multiplayer/coop","tech" ]}/>
+<Newslayout sectionTitle="უახლესი" database={newsPosts}/>
 
 </section>
 

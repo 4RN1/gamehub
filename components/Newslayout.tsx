@@ -1,48 +1,45 @@
-"use client"
+"use client";
 
-import { latestArticles } from '@/lib/testData';
-import Image from 'next/image';
-import { Ellipsis } from 'lucide-react';
-import { useState } from 'react';
-import Link from 'next/link';
+import { latestArticles } from "@/lib/testData";
+import Image from "next/image";
+import { Ellipsis } from "lucide-react";
+import { useState } from "react";
+import Link from "next/link";
+import { formatDate } from "@/lib/formatDate";
 
-
-
-type filter = "action" |  "role-playing" |  "strategy" | "shooters" | "simulator" | "sports/racing" | "multiplayer/coop" | "your posts" | "favorites" | "all" | "tech" | "games";
-
-
-
-interface NewsLayout {
-  sectionTitle:string,
-  filters:filter[];
+interface Article {
+  id: number;
+  slug: string;
+  image_url: string;
+  title: string;
+  tags: string[];
+  short_desc: string;
+  post_content: string;
+  category: string;
+  created_at: string;
 }
 
+interface NewsLayout {
+  sectionTitle: string;
+  database?: Article[];
+}
 
-
-
-const Newslayout = ( {sectionTitle, filters } : NewsLayout) => {
-
-const [filterByCategory, setFilterByCategory] = useState("all")
-
-
-
-
+const Newslayout = ({ sectionTitle, database }: NewsLayout) => {
+  const [filterByCategory, setFilterByCategory] = useState("all");
 
   return (
-   <div className="min-h-screen  text-white font-sans max-w-440 mx-auto max-sm:px-5">
+    <div className="min-h-screen  text-white font-sans max-w-440 mx-auto max-sm:px-5">
       <div className="py-5">
         <div className="flex gap-8 max-lg:flex-col">
- 
           {/* ── Main Content ── */}
           <div className="flex-1">
- 
             {/* Section Title */}
-       <h2 className="text-2xl font-extrabold uppercase tracking-widest mb-5 max-sm:text-center">
+            <h2 className="text-2xl font-extrabold uppercase tracking-widest mb-5 max-sm:text-center">
               {sectionTitle}
             </h2>
- 
+
             {/* Filter Tabs */}
-               <div className="flex gap-2 mb-6 flex-wrap max-sm:justify-center">
+            {/* <div className="flex gap-2 mb-6 flex-wrap max-sm:justify-center">
               {filters.map((filter) => (
                 <button
                   key={filter}
@@ -56,91 +53,86 @@ const [filterByCategory, setFilterByCategory] = useState("all")
                   {filter}
                 </button>
               ))}
-            </div>
- 
+            </div> */}
+
             {/* Article List */}
-            <div className="flex flex-col gap-6 ">
-              {latestArticles.map((article) => (
+            <div className="flex flex-col gap-6 max-w-275">
+              {(!database || database?.length === 0) && (
+                <p className="text-gray-400 text-center py-20">
+                  სიახლეები არ არის
+                </p>
+              )}
+
+              {database?.map((article) => (
                 <Link
                   key={article.id}
-                  href = {`/news/${article.category}/${article.id}`}
+                  href={`/news/${article.category}/${article.slug}`}
                   className="flex gap-5 cursor-pointer group max-sm:flex-col max-sm:items-center max-sm:mb-5"
                 >
                   {/* Thumbnail */}
                   <div className="relative w-79 h-55 shrink-0 overflow-hidden rounded ">
                     <div className="w-full h-full bg-[#2e2e2e] rounded " />
-                    
+
                     <Image
-                      src={article.image}
+                      src={
+                        article.image_url
+                          ? article.image_url
+                          : "/assets/LOGO.png"
+                      }
                       alt={article.title}
                       fill
                       sizes="width:100%"
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                   
                   </div>
- 
+
                   {/* Text */}
                   <div className="flex flex-col justify-center gap-2 max-sm:items-center">
-                    <span className="text-gray-400 text-xs">{article.timeAgo}</span>
- 
-                    <h3 className="text-xl font-extrabold leading-snug group-hover:text-orange-400 transition-colors max-sm:text-center">
+                    <p className="flex gap-2">
+                      {article.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="bg-orange-500 text-sm text-black font-medium px-2 py-0.5 rounded"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </p>
+                    <h3 className="text-2xl font-extrabold leading-snug group-hover:text-orange-400 transition-colors max-sm:text-center">
                       {article.title}
                     </h3>
- 
-                    <p className="text-sm text-gray-400 leading-relaxed line-clamp-2 max-sm:text-center">
-                      {article.excerpt}
+                    <span className="text-gray-400 text-sm">
+                      {formatDate(article.created_at)}
+                    </span>
+
+                    <p className="text-sm text-gray-400 leading-relaxed line-clamp-2 max-sm:text-center max-w-170">
+                      {article.short_desc}
                     </p>
- 
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className="text-xs text-gray-400">
-                        By{" "}
-                        <span className="font-semibold text-white">
-                          {article.author}
-                        </span>
-                      </span>
-                      {/* Comment icon placeholder */}
-                      <span className="text-gray-500 text-xs">|</span>
-                      <svg
-                        className="w-4 h-4 text-gray-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
                   </div>
                 </Link>
               ))}
             </div>
+
+            <span className="flex justify-center transition-all ">
+              <Ellipsis
+                size={60}
+                className="bg-gray-700 ring ring-white/20 hover:opacity-95 hover:scale-105 duration-75 cursor-pointer rounded-2xl w-25 my-10"
+              />{" "}
+            </span>
           </div>
 
-              {/* AD CONTAINERS */}
-                <div className='lg:w-100 flex flex-col items-center h-full gap-10  max-lg:hidden '>
-
-            <Link href="#" className='lg:w-70  w-full h-150 relative'>
-              <Image src="/assets/ad.png" alt='asd' fill objectPosition='center'/>
-          </Link>
-
-          
-            <Link href="#" className='w-70 bg- h-150 relative'>
-              <Image src="/assets/ad2.png" alt='asd' fill />
-          </Link>
-              </div>
-
-
+          {/* AD CONTAINERS */}
+          <div className="lg:w-fit flex flex-col items-center gap-10 max-lg:hidden">
+            <div className="sticky top-20 w-60 h-150">
+              <Link href="#">
+                <Image src="/assets/ad.png" alt="ad" fill objectFit="cover" />
+              </Link>
+            </div>
+          </div>
         </div>
-
-             
-
       </div>
-       <span className='flex justify-center transition-all '><Ellipsis size={60} className='bg-gray-700 ring ring-white/20 hover:opacity-95 hover:scale-105 duration-75 cursor-pointer rounded-2xl w-25 my-10'/> </span>
     </div>
-  )
-}
+  );
+};
 
-export default Newslayout
+export default Newslayout;

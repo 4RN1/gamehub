@@ -8,6 +8,9 @@ import { gg } from "@/lib/testData";
 const page = async  ({params} : {params: {type:string}}) => {
   
   const {type} = await params;
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
+const newsPosts = await res.json()
+
   
     return (
         
@@ -19,7 +22,7 @@ const page = async  ({params} : {params: {type:string}}) => {
       </div> 
 
 
-<Newslayout sectionTitle={type} filters={["all"]}/>
+<Newslayout sectionTitle={type} database={newsPosts}/>
     </section>
   )
 }

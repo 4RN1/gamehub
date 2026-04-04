@@ -52,62 +52,62 @@ export const socialLinks = [
 ];
 
 export const latestArticles = [
-  {
-    id: 1,
-    category: "VIDEO GAMES",
-    timeAgo: "5 minutes ago",
-    title: "Sonic Rumble Announces Relaunch and Exciting Collab",
-    excerpt:
-      "Sonic Rumble announces relaunch alongside a major update, featuring a new game mode, an exciting collaboration event, and various improvements.",
-    author: "Ashely Claudino",
-    image: "/assets/test7.webp",
-  },
-  {
-    id: 2,
-    category: "VIDEO GAMES",
-    timeAgo: "5 minutes ago",
-    title: "LEGO Batman: Legacy of the Dark Knight Has a New Release Date",
-    excerpt:
-      "TT Games' LEGO Batman: Legacy of the Dark Knight has just officially been given a new release date.",
-    author: "Cameron Swan",
-    image: "/assets/test8.webp",
-  },
+  // {
+  //   id: 1,
+  //   category: "VIDEO GAMES",
+  //   timeAgo: "5 minutes ago",
+  //   title: "Sonic Rumble Announces Relaunch and Exciting Collab",
+  //   excerpt:
+  //     "Sonic Rumble announces relaunch alongside a major update, featuring a new game mode, an exciting collaboration event, and various improvements.",
+  //   author: "Ashely Claudino",
+  //   image: "/assets/test7.webp",
+  // },
+  // {
+  //   id: 2,
+  //   category: "VIDEO GAMES",
+  //   timeAgo: "5 minutes ago",
+  //   title: "LEGO Batman: Legacy of the Dark Knight Has a New Release Date",
+  //   excerpt:
+  //     "TT Games' LEGO Batman: Legacy of the Dark Knight has just officially been given a new release date.",
+  //   author: "Cameron Swan",
+  //   image: "/assets/test8.webp",
+  // },
 
 
-   {
-    id: 3,
-    category: "VIDEO GAMES",
-    timeAgo: "5 minutes ago",
-    title: "LEGO Batman: Legacy of the Dark Knight Has a New Release Date",
-    excerpt:
-      "TT Games' LEGO Batman: Legacy of the Dark Knight has just officially been given a new release date.",
-    author: "Cameron Swan",
-    image: "/assets/test1.jpg",
-  },
+  //  {
+  //   id: 3,
+  //   category: "VIDEO GAMES",
+  //   timeAgo: "5 minutes ago",
+  //   title: "LEGO Batman: Legacy of the Dark Knight Has a New Release Date",
+  //   excerpt:
+  //     "TT Games' LEGO Batman: Legacy of the Dark Knight has just officially been given a new release date.",
+  //   author: "Cameron Swan",
+  //   image: "/assets/test1.jpg",
+  // },
 
-   {
-    id: 4,
-    category: "VIDEO GAMES",
-    timeAgo: "5 minutes ago",
-    title: "LEGO Batman: Legacy of the Dark Knight Has a New Release Date",
-    excerpt:
-      "TT Games' LEGO Batman: Legacy of the Dark Knight has just officially been given a new release date.",
-    author: "Cameron Swan",
-    image: "/assets/test2.webp",
-  },
+  //  {
+  //   id: 4,
+  //   category: "VIDEO GAMES",
+  //   timeAgo: "5 minutes ago",
+  //   title: "LEGO Batman: Legacy of the Dark Knight Has a New Release Date",
+  //   excerpt:
+  //     "TT Games' LEGO Batman: Legacy of the Dark Knight has just officially been given a new release date.",
+  //   author: "Cameron Swan",
+  //   image: "/assets/test2.webp",
+  // },
 
 
 
-   {
-    id: 5,
-    category: "VIDEO GAMES",
-    timeAgo: "5 minutes ago",
-    title: "LEGO Batman: Legacy of the Dark Knight Has a New Release Date",
-    excerpt:
-      "TT Games' LEGO Batman: Legacy of the Dark Knight has just officially been given a new release date.",
-    author: "Cameron Swan",
-    image: "/assets/gg.jpg",
-  },
+  //  {
+  //   id: 5,
+  //   category: "VIDEO GAMES",
+  //   timeAgo: "5 minutes ago",
+  //   title: "LEGO Batman: Legacy of the Dark Knight Has a New Release Date",
+  //   excerpt:
+  //     "TT Games' LEGO Batman: Legacy of the Dark Knight has just officially been given a new release date.",
+  //   author: "Cameron Swan",
+  //   image: "/assets/gg.jpg",
+  // },
 ];
 
 export const latestTestNews = [

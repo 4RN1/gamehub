@@ -57,6 +57,10 @@ export default function CreateNews() {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [coverImage, setCoverImage] = useState("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [shortDescription, setShortDescription] = useState("");
+  const [slug, setSlug] = useState("");
+
   const [status, setStatus] = useState<"draft" | "published">("draft");
 
   const editor = useEditor({
@@ -71,9 +75,42 @@ export default function CreateNews() {
     },
   });
 
+  const tags = [
+    "Action",
+    "Adventure",
+    "RPGs",
+    "Simulation",
+    "Sports",
+    "Puzzle",
+    "Horror",
+    "Fighting",
+    "Racing",
+    "Shooter",
+    "MMORPG",
+    "Survival",
+    "Multiplayer",
+    "Open World",
+
+
+  ];
+
+  const handleTagChange = (tag: string) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
+    );
+  };
+
   const handleSubmit = () => {
     const html = editor?.getHTML();
-    console.log({ title, category, coverImage, content: html, status });
+    console.log({
+      title,
+      category,
+      coverImage,
+      tags,
+      shortDescription,
+      content: html,
+      status,
+    });
     alert(`Article "${title}" saved as ${status}!`);
   };
 
@@ -82,7 +119,6 @@ export default function CreateNews() {
   return (
     <div className="min-h-screen w-full bg-gray-100 p-6">
       <div className="mx-auto flex max-w-4xl flex-col gap-5">
-
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -95,13 +131,19 @@ export default function CreateNews() {
           </div>
           <div className="flex items-center gap-3">
             <button
-              onClick={() => { setStatus("draft"); handleSubmit(); }}
+              onClick={() => {
+                setStatus("draft");
+                handleSubmit();
+              }}
               className="h-9 rounded-md border border-gray-300 bg-white px-5 text-sm font-semibold text-gray-600 transition-colors hover:bg-gray-50"
             >
               Save Draft
             </button>
             <button
-              onClick={() => { setStatus("published"); handleSubmit(); }}
+              onClick={() => {
+                setStatus("published");
+                handleSubmit();
+              }}
               className="h-9 rounded-md bg-blue-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-blue-800"
             >
               Publish
@@ -130,7 +172,7 @@ export default function CreateNews() {
               />
             </div>
 
-            {/* Category + Cover image */}
+            {/* Category + Cover image + Tags*/}
             <div className="flex gap-4">
               <div className="flex flex-1 flex-col gap-1.5">
                 <label className="text-xs font-semibold uppercase tracking-widest text-gray-400">
@@ -142,12 +184,9 @@ export default function CreateNews() {
                   className="h-10 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-800 outline-none focus:border-blue-700"
                 >
                   <option value="">Select category...</option>
-                  <option value="politics">Politics</option>
+                  <option value="gaming">Gaming</option>
                   <option value="technology">Technology</option>
-                  <option value="sports">Sports</option>
-                  <option value="economy">Economy</option>
-                  <option value="world">World</option>
-                  <option value="culture">Culture</option>
+                  <option value="console">Console Games</option>
                 </select>
               </div>
               <div className="flex flex-1 flex-col gap-1.5">
@@ -163,6 +202,29 @@ export default function CreateNews() {
               </div>
             </div>
 
+            <div className="flex flex-1 flex-col gap-1.5">
+              <label className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+                Tags
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <label
+                    key={tag}
+                    className="flex cursor-pointer items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-sm text-gray-800 hover:border-blue-700 has-[:checked]:border-blue-700 has-[:checked]:bg-blue-50 has-[:checked]:text-blue-700"
+                  >
+                    <input
+                      type="checkbox"
+                      value={tag.toLowerCase()}
+                      checked={selectedTags.includes(tag)}
+                      onChange={() => handleTagChange(tag)}
+                      className="hidden"
+                    />
+                    {tag}
+                  </label>
+                ))}
+              </div>
+            </div>
+
             {/* Cover preview */}
             {coverImage && (
               <div className="overflow-hidden rounded-lg border border-gray-200 relative">
@@ -175,6 +237,30 @@ export default function CreateNews() {
                 />
               </div>
             )}
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+                Short Description
+              </label>
+              <input
+                value={shortDescription}
+                onChange={(e) => setShortDescription(e.target.value)}
+                placeholder="Enter short description... (max:150 characters)"
+                className="h-10 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-blue-700"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+                Slug
+              </label>
+              <input
+                value={slug}
+                onChange={(e) => setSlug(e.target.value)}
+                placeholder="Enter URL slug... (e.g. my-article-title)"
+                className="h-10 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-blue-700"
+              />
+            </div>
           </div>
         </div>
 
@@ -213,21 +299,27 @@ export default function CreateNews() {
             <Divider />
 
             <ToolbarButton
-              onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+              onClick={() =>
+                editor.chain().focus().toggleHeading({ level: 1 }).run()
+              }
               isActive={editor.isActive("heading", { level: 1 })}
               title="Heading 1"
             >
               <Heading1 size={14} />
             </ToolbarButton>
             <ToolbarButton
-              onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+              onClick={() =>
+                editor.chain().focus().toggleHeading({ level: 2 }).run()
+              }
               isActive={editor.isActive("heading", { level: 2 })}
               title="Heading 2"
             >
               <Heading2 size={14} />
             </ToolbarButton>
             <ToolbarButton
-              onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+              onClick={() =>
+                editor.chain().focus().toggleHeading({ level: 3 }).run()
+              }
               isActive={editor.isActive("heading", { level: 3 })}
               title="Heading 3"
             >
@@ -284,7 +376,8 @@ export default function CreateNews() {
             {/* Word count */}
             <div className="ml-auto text-xs text-gray-400">
               {editor.storage.characterCount?.words?.() ??
-                editor.getText().trim().split(/\s+/).filter(Boolean).length}{" "}
+                editor.getText().trim().split(/\s+/).filter(Boolean)
+                  .length}{" "}
               words
             </div>
           </div>
@@ -295,16 +388,16 @@ export default function CreateNews() {
 
         {/* Status badge */}
         <div className="flex items-center justify-end gap-3">
-          
-     
           <button
-            onClick={() => { setStatus("published"); handleSubmit(); }}
+            onClick={() => {
+              setStatus("published");
+              handleSubmit();
+            }}
             className="h-9 rounded-md bg-blue-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-blue-800"
           >
             Publish
           </button>
         </div>
-
       </div>
     </div>
   );

@@ -34,7 +34,8 @@ const AdminSidebar = () => {
   if (path === '/admin') return null;
 
   return (
-    <div className="bg-blue-950 w-64 h-screen flex flex-col">
+    <div className="bg-blue-950 w-64 relative">
+      <div className="fixed h-screen flex flex-col">
 
       {/* Header */}
       <div className="border-b border-blue-800 text-center py-5 px-4">
@@ -79,7 +80,7 @@ const AdminSidebar = () => {
           LOGOUT
         </button>
       </div>
-
+</div>
     </div>
   )
 }

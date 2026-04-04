@@ -155,7 +155,7 @@ export default function UsersTable() {
                     {/* Avatar */}
                     <td className="px-4 py-4">
                       <div
-                        className={`w-9 h-9 rounded-full bg-gradient-to-br ${avatarColors[user.id % avatarColors.length]} flex items-center justify-center text-white font-bold text-sm shadow`}
+                        className={`w-9 h-9 rounded-full bg-linear-to-br ${avatarColors[user.id % avatarColors.length]} flex items-center justify-center text-white font-bold text-sm shadow`}
                       >
                         {user.name.charAt(0).toUpperCase()}
                       </div>
