@@ -1,17 +1,23 @@
-"use client";
-import { useState } from "react";
+// import { useState } from "react";
 import { Pencil, X, Copy, Plus } from "lucide-react";
 import Link from "next/link";
+import pool from "@/lib/db";
+import { formatDate } from "@/lib/formatDate";
+import { deletePost } from "@/app/actions/deletePost";
+import DeleteButton from "@/components/DeleteButton";
+import CopyToClipboardButton from "@/components/CopyToClipboardButton";
 
-const news = [];
+export default async function NewsList() {
+  // const [selected, setSelected] = useState<number[]>([]);
 
-export default function NewsList() {
-  const [selected, setSelected] = useState<number[]>([]);
-
-  const toggle = (id: number) =>
-    setSelected((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id],
-    );
+  // const toggle = (id: number) =>
+  //   setSelected((prev) =>
+  //     prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id],
+  //   );
+  const result = await pool.query(
+    `SELECT * FROM newsposts ORDER BY created_at DESC`,
+  );
+  const news = result.rows;
 
   return (
     <div className="min-h-screen w-full bg-gray-100 text-gray-800 p-6 flex flex-col gap-5">
@@ -64,24 +70,16 @@ export default function NewsList() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-200">
-                {[
-                  "",
-                  "Title",
-                  "Status",
-                  "Visibility",
-                  "Publish On",
-                  "Created At",
-                  "Updated At",
-                  "Copy URL",
-                  "Action",
-                ].map((h) => (
-                  <th
-                    key={h}
-                    className="px-4 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-widest"
-                  >
-                    {h}
-                  </th>
-                ))}
+                {["", "Title", "Created At", "tags", "Copy URL", "Action"].map(
+                  (h) => (
+                    <th
+                      key={h}
+                      className="px-4 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-widest"
+                    >
+                      {h}
+                    </th>
+                  ),
+                )}
               </tr>
             </thead>
             <tbody>
@@ -93,50 +91,44 @@ export default function NewsList() {
                   <td className="px-4 py-3">
                     <input
                       type="checkbox"
-                      checked={selected.includes(item.id)}
-                      onChange={() => toggle(item.id)}
                       className="accent-orange-600 w-4 h-4"
                     />
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-700 font-medium max-w-[180px] truncate">
+                  <td className="px-4 py-3 text-sm text-gray-700 font-medium max-w-45 truncate">
                     {item.title}
                   </td>
-                  <td className="px-4 py-3">
-                    <span
-                      className={`text-xs font-semibold px-3 py-1 rounded-full ${item.status === "Published" ? "bg-green-100 text-green-600 border border-green-200" : "bg-orange-100 text-orange-500 border border-orange-200"}`}
-                    >
-                      {item.status}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <button
-                      className={`text-xs font-semibold px-3 py-1 rounded-full ${item.visibility === "Private" ? "bg-blue-100 text-blue-500" : "bg-green-100 text-green-600"}`}
-                    >
-                      {item.visibility}
-                    </button>
-                  </td>
+
                   <td className="px-4 py-3 text-xs text-gray-500">
-                    {item.publishOn}
+                    {formatDate(item.created_at)}
                   </td>
-                  <td className="px-4 py-3 text-xs text-gray-500">
-                    {item.createdAt}
-                  </td>
-                  <td className="px-4 py-3 text-xs text-gray-500">
-                    {item.updatedAt}
-                  </td>
+
                   <td className="px-4 py-3">
-                    <button className="border border-gray-200 hover:border-green-500 hover:text-green-500 text-gray-400 rounded-md w-15 h-7 flex items-center justify-center transition-colors">
-                      <Copy size={13} />
-                    </button>
+                    <div className="flex flex-wrap gap-1">
+                      {item.tags.map((tag: string) => (
+                        <span
+                          key={tag}
+                          className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-md border border-gray-200"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+
+                 
+
+                  <td className="px-4 py-3">
+                    <CopyToClipboardButton
+                      slug={item.slug}
+                    />
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex gap-2">
                       <button className="border border-gray-200 hover:border-blue-500 hover:text-blue-500 text-gray-400 rounded-md w-7 h-7 flex items-center justify-center transition-colors">
                         <Pencil size={13} />
                       </button>
-                      <button className="border border-gray-200 hover:border-orange-500 hover:text-orange-500 text-gray-400 rounded-md w-7 h-7 flex items-center justify-center transition-colors">
-                        <X size={13} />
-                      </button>
+
+                      <DeleteButton id={item.id} />
                     </div>
                   </td>
                 </tr>

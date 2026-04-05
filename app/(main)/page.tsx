@@ -19,8 +19,6 @@ const newsPosts = await res.json()
   return (
 <main className="lg:ml-17 mx-auto">
 <TrendingSection/>
-<CategorySection sectionTitle="ტექ შეთავაზებები" database={newsPosts} category="tech"/>
-<CategorySection sectionTitle="კონსოლის თამაშები" database={newsPosts} category="console"/>
 <Newslayout sectionTitle="უახლესი ამბები" database={newsPosts} />
 </main>
   );

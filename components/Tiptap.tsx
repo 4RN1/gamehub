@@ -2,6 +2,7 @@
 
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+
 import { useState } from "react";
 import {
   Bold,
@@ -18,6 +19,8 @@ import {
   Minus,
 } from "lucide-react";
 import Image from "next/image";
+import { createPost } from "@/app/actions/createPost";
+
 
 type ToolbarButtonProps = {
   onClick: () => void;
@@ -51,6 +54,7 @@ const ToolbarButton = ({
   </button>
 );
 
+
 const Divider = () => <div className="mx-1 h-6 w-px bg-gray-200" />;
 
 export default function CreateNews() {
@@ -60,8 +64,8 @@ export default function CreateNews() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [shortDescription, setShortDescription] = useState("");
   const [slug, setSlug] = useState("");
+  const [success, setSuccess] = useState(false);
 
-  const [status, setStatus] = useState<"draft" | "published">("draft");
 
   const editor = useEditor({
     extensions: [StarterKit],
@@ -100,18 +104,40 @@ export default function CreateNews() {
     );
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const html = editor?.getHTML();
     console.log({
-      title,
-      category,
-      coverImage,
-      tags,
-      shortDescription,
-      content: html,
-      status,
+    slug,
+    image_url: coverImage,
+    title,
+    short_desc: shortDescription,
+    post_content: html ?? "",
+    category,
+    tags: selectedTags,     
     });
-    alert(`Article "${title}" saved as ${status}!`);
+
+    await createPost({
+      slug,
+      image_url: coverImage,
+    title,
+    short_desc: shortDescription,
+    post_content: html ?? "",
+    category,
+    tags: selectedTags,
+    })
+  
+
+    setTitle("");
+  setCategory("");
+  setCoverImage("");
+  setSelectedTags([]);
+  setShortDescription("");
+  setSlug("");
+  editor?.commands.clearContent();
+
+  setSuccess(true);
+  setTimeout(() => setSuccess(false), 3000);
+
   };
 
   if (!editor) return null;
@@ -129,26 +155,7 @@ export default function CreateNews() {
               Create Article
             </h1>
           </div>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => {
-                setStatus("draft");
-                handleSubmit();
-              }}
-              className="h-9 rounded-md border border-gray-300 bg-white px-5 text-sm font-semibold text-gray-600 transition-colors hover:bg-gray-50"
-            >
-              Save Draft
-            </button>
-            <button
-              onClick={() => {
-                setStatus("published");
-                handleSubmit();
-              }}
-              className="h-9 rounded-md bg-blue-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-blue-800"
-            >
-              Publish
-            </button>
-          </div>
+         
         </div>
 
         {/* Meta fields */}
@@ -210,7 +217,7 @@ export default function CreateNews() {
                 {tags.map((tag) => (
                   <label
                     key={tag}
-                    className="flex cursor-pointer items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-sm text-gray-800 hover:border-blue-700 has-[:checked]:border-blue-700 has-[:checked]:bg-blue-50 has-[:checked]:text-blue-700"
+                    className="flex cursor-pointer items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-sm text-gray-800 hover:border-blue-700 has-checked:border-blue-700 has-checked:bg-blue-50 has-checked:text-blue-700"
                   >
                     <input
                       type="checkbox"
@@ -298,15 +305,7 @@ export default function CreateNews() {
 
             <Divider />
 
-            <ToolbarButton
-              onClick={() =>
-                editor.chain().focus().toggleHeading({ level: 1 }).run()
-              }
-              isActive={editor.isActive("heading", { level: 1 })}
-              title="Heading 1"
-            >
-              <Heading1 size={14} />
-            </ToolbarButton>
+        
             <ToolbarButton
               onClick={() =>
                 editor.chain().focus().toggleHeading({ level: 2 }).run()
@@ -390,7 +389,6 @@ export default function CreateNews() {
         <div className="flex items-center justify-end gap-3">
           <button
             onClick={() => {
-              setStatus("published");
               handleSubmit();
             }}
             className="h-9 rounded-md bg-blue-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-blue-800"
@@ -399,6 +397,19 @@ export default function CreateNews() {
           </button>
         </div>
       </div>
+     {success && (
+  <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-xl border border-green-500/20 bg-zinc-900 px-5 py-3.5 shadow-2xl shadow-black/40">
+    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-green-500/10">
+      <svg className="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+    <div>
+      <p className="text-md font-semibold text-white">Post Published!</p>
+      <p className="text-xs text-zinc-400">Your article is now live</p>
+    </div>
+  </div>
+)}
     </div>
   );
 }

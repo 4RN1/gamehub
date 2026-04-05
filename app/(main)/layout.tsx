@@ -16,20 +16,19 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-<body className="min-h-screen flex flex-col">
-  <Navbar />
+    
 
-  <div>
-    <SideNavbar />
-    <main>
-      <ScrollToTopBtn />
-      {children}
-    </main>
-  </div>
-
-  <Footer />
-</body>
-    </html>
+<div className="min-h-screen flex flex-col">
+      <Navbar />
+      <div>
+        <SideNavbar />
+        <main>
+          <ScrollToTopBtn />
+          {children}
+        </main>
+      </div>
+      <Footer />
+    </div>
+  
   );
 }

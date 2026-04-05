@@ -1,0 +1,57 @@
+// app/news/[slug]/page.tsx
+
+import pool from "@/lib/db";
+import { formatDate } from "@/lib/formatDate";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+
+export default async function PostPage({ params }: { params: { slug: string } }) {
+  // app/news/[slug]/page.tsx
+const result = await pool.query(`SELECT * FROM newsposts WHERE slug = $1`, [params.slug]);
+  const post = result.rows[0];
+
+if (!post) notFound();
+
+  return (
+    <div className="min-h-screen bg-zinc-900 flex flex-col items-center px-4 py-10">
+      {/* Tags */}
+      <div className="flex flex-wrap gap-2 w-full max-w-3xl mb-4">
+        {post.tags.map((tag: string) => (
+          <span key={tag} className="bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      {/* Title */}
+      <h1 className="w-full max-w-3xl text-2xl md:text-4xl font-bold text-white mb-3">
+        {post.title}
+      </h1>
+
+      {/* Date */}
+      <p className="w-full max-w-3xl text-sm text-gray-400 mb-6">
+        Published {formatDate(post.created_at)}
+      </p>
+
+      {/* Banner */}
+      {post.image_url && (
+        <div className="relative w-full max-w-3xl h-64 md:h-[500px] rounded-xl overflow-hidden mb-8">
+          <Image
+            src={post.image_url}
+            alt={post.title}
+            fill
+            className="object-cover"
+          />
+        </div>
+      )}
+
+      {/* Content */}
+{/* Content */}
+<div
+  className="w-full max-w-3xl bg-black rounded-xl p-6 text-gray-400 text-sm leading-relaxed prose prose-invert"
+  dangerouslySetInnerHTML={{ __html: post.post_content }}
+/>
+
+    </div>
+  );
+}

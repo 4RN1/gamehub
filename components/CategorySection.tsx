@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import { formatDate } from "@/lib/formatDate";
+import { useState } from "react";
 
 interface Article {
   id: number;
@@ -26,6 +27,14 @@ interface categorySectionProps {
 }
 
 const CategorySection = ({sectionTitle, database, category} : categorySectionProps) => {
+
+
+const [postfilter, setPostFilter] = useState([]);
+
+
+
+
+
   return (
    <section className=" pb-5 max-w-440 mx-auto">
       <div className="flex  gap-4  max-w-440 pb-5 pt-5 max-sm:px-2"> 

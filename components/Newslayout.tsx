@@ -66,7 +66,7 @@ const Newslayout = ({ sectionTitle, database }: NewsLayout) => {
               {database?.map((article) => (
                 <Link
                   key={article.id}
-                  href={`/news/${article.category}/${article.slug}`}
+                  href={`/news/${article.slug}`}
                   className="flex gap-5 cursor-pointer group max-sm:flex-col max-sm:items-center max-sm:mb-5"
                 >
                   {/* Thumbnail */}
