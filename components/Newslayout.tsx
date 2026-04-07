@@ -28,7 +28,7 @@ const Newslayout = ({ sectionTitle, database }: NewsLayout) => {
   const [filterByCategory, setFilterByCategory] = useState("all");
 
   return (
-    <div className="min-h-screen  text-white font-sans max-w-440 mx-auto max-sm:px-5">
+    <div className="min-h-screen  text-white font-sans max-w-440 mx-auto px-5">
       <div className="py-5">
         <div className="flex gap-8 max-lg:flex-col">
           {/* ── Main Content ── */}
@@ -67,7 +67,7 @@ const Newslayout = ({ sectionTitle, database }: NewsLayout) => {
                 <Link
                   key={article.id}
                   href={`/news/${article.slug}`}
-                  className="flex gap-5 cursor-pointer group max-sm:flex-col max-sm:items-center max-sm:mb-5"
+                  className="flex gap-5 cursor-pointer group max-sm:flex-col max-sm:items-center max-sm:mb-5 border-b border-zinc-700 py-5"
                 >
                   {/* Thumbnail */}
                   <div className="relative w-79 h-55 shrink-0 overflow-hidden rounded ">

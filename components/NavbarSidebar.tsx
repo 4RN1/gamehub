@@ -11,13 +11,12 @@ import { MdAccountBox } from "react-icons/md";
 const navLinks = [
   { href: "/", icon: Home, label: "Home" },
   { href: "/news", icon: NewspaperIcon, label: "News" },
-  { href: "/forum", icon: FormInput, label: "Forum" },
-  { href: "/notifications", icon: BiNotification, label: "Notifications", isModal: true },
+
   { href: "/account", icon: MdAccountBox, label: "Account" },
 
 ]
 
-const SideNavbar = () => {
+const NavbarSidebar = () => {
   const pathname = usePathname()
   
   const isActive = (href: string) =>
@@ -33,22 +32,15 @@ const [notificationsOpen, setNotificationsOpen] = useState(false)
   if (hideNavbar) return null
 
   return (
-    <>
+  
+   <div className="">
       {/* Desktop sidebar */}
       <nav className="fixed top-0 left-0 bottom-0 w-17 bg-(--dark-background) border-r border-[#333] flex justify-center items-center max-lg:hidden z-40">
     
-<ul className="flex flex-col items-center gap-3 py-4">
-  {navLinks.map(({ href, icon: Icon, label, isModal }) => (
+<ul className="flex flex-col items-center gap-5 py-4">
+  {navLinks.map(({ href, icon: Icon, }) => (
     <li key={href}>
-      {isModal ? (
-        <button
-          onClick={() => setNotificationsOpen(true)}
-          className="flex items-center justify-center p-3 rounded-lg transition-colors hover:bg-white/5"
-          style={{ color: "#9ca3af" }}
-        >
-          <Icon size={25} />
-        </button>
-      ) : (
+      {(
         <Link
           href={href}
           className="flex items-center justify-center p-3 rounded-lg transition-colors hover:bg-white/5"
@@ -91,8 +83,8 @@ const [notificationsOpen, setNotificationsOpen] = useState(false)
 
 
       
-    </>
+    </div>
   )
 }
 
-export default SideNavbar
+export default NavbarSidebar

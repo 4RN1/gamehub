@@ -20,9 +20,8 @@ const links = [
     ]
   },
   {
-    group: "Forum",
+    group: "Support",
     items: [
-      { href: "/admin/threads", label: "Threads", icon: <MdForum size={20} /> },
       { href: "/admin/support", label: "Support Messages", icon: <MdOutlineSupportAgent size={20} /> },
     ]
   }

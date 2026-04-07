@@ -1,4 +1,3 @@
-import ForumPosts from '@/components/ForumPosts'
 import Newslayout from '@/components/Newslayout'
 import UserProfile from '@/components/UserProfile'
 import { threadData, userTestInfo } from '@/lib/testData'
@@ -11,7 +10,7 @@ const page = () => {
   return (
   <main className="lg:ml-17 mx-auto">
    <UserProfile {...userTestInfo} />
-   <ForumPosts {...threadData}/>
+  
 
 
   </main>

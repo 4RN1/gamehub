@@ -31,7 +31,7 @@ interface sidebarNews {
 
 const TrendingSection = () => {
   return (
-    <section className="py-5 max-w-440 mx-auto">
+    <section className="py-5 max-w-440 mx-auto sm:px-4">
       <div className="h-125 rounded-xl overflow-hidden mb-10 max-sm:h-100 max-sm:mx-2">
         <Swiper
           spaceBetween={0}

@@ -3,7 +3,9 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTopBtn from "@/components/ScrollToTopBtn";
-import SideNavbar from "@/components/SideNavbar";
+import SideNavbar from "@/components/NavbarSidebar";
+import AdminSidebar from "@/components/AdminSidebar";
+import NavbarSidebar from "@/components/NavbarSidebar";
 
 export const metadata: Metadata = {
   title: "GameHub",
@@ -20,9 +22,9 @@ export default function MainLayout({
 
 <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div>
-        <SideNavbar />
-        <main>
+      <div className="flex">
+        <NavbarSidebar />
+        <main className="w-full">
           <ScrollToTopBtn />
           {children}
         </main>

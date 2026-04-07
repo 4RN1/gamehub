@@ -214,10 +214,8 @@ export const userTestInfo = {
   bannerUrl:"/assets/777.jpg", 
   profileImageUrl:"/assets/gg.jpg",
   nickname:"Nickname2005",
-  uniqueId:"@nnk-204214", 
-  country:"Georgia",
-  bio:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores impedit, eaque consequatur ex enim magni amet nam commodi corrupti, hic, tenetur optio labore delectus. Perferendis assumenda distinctio culpa pariatur vel?Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus similique voluptatem illo dignissimos ullam. Modi ullam animi non numquam esse, quos, rerum ducimus cumque ad, fuga explicabo eligendi inventore repudiandae.", 
-  socialLinks:["discord" , "youtube"], 
+  uniqueId:"@Nickname2005", 
+  createdDate:"შემოგვიერთდა April 7, 2026",
   stats:
     { followers:250, 
       following:405
