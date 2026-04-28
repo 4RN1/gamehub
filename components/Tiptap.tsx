@@ -3,13 +3,12 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import {
   Bold,
   Italic,
   Strikethrough,
-  Heading1,
-  Heading2,
   Heading3,
   List,
   ListOrdered,
@@ -20,6 +19,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { createPost } from "@/app/actions/createPost";
+import { slugify } from "@/utils/slugify";
 
 
 type ToolbarButtonProps = {
@@ -65,19 +65,24 @@ export default function CreateNews() {
   const [shortDescription, setShortDescription] = useState("");
   const [slug, setSlug] = useState("");
   const [success, setSuccess] = useState(false);
+  const [manual, setManual] = useState(false);
 
-
-  const editor = useEditor({
-    extensions: [StarterKit],
-    content: "<p>Start writing your article here...</p>",
-    immediatelyRender: false,
-    editorProps: {
-      attributes: {
-        class:
-          "min-h-[320px] px-5 py-4 text-sm text-gray-800 leading-relaxed outline-none prose prose-sm max-w-none",
+const editor = useEditor({
+  extensions: [
+    StarterKit.configure({
+      heading: {
+        levels: [2, 3],
       },
+    }),
+  ],
+  content: "<p>Start writing your article here...</p>",
+  immediatelyRender: false,
+  editorProps: {
+    attributes: {
+      class: "min-h-[320px] px-5 py-4 text-sm text-gray-800 leading-relaxed outline-none prose max-w-none prose-h2:text-2xl prose-h2:font-bold prose-h3:text-xl prose-h3:font-bold prose-ul:list-disc prose-ol:list-decimal prose-blockquote:border-l-4 prose-blockquote:pl-4 prose-blockquote:italic",
     },
-  });
+  },
+});
 
   const tags = [
     "Action",
@@ -94,6 +99,7 @@ export default function CreateNews() {
     "Survival",
     "Multiplayer",
     "Open World",
+    "Romantic"
 
 
   ];
@@ -139,6 +145,14 @@ export default function CreateNews() {
   setTimeout(() => setSuccess(false), 3000);
 
   };
+
+
+   useEffect(() => {
+    if (!manual) {
+      setSlug(slugify(title));
+    }
+  }, [title, manual]);
+  
 
   if (!editor) return null;
 
@@ -235,15 +249,16 @@ export default function CreateNews() {
             {/* Cover preview */}
             {coverImage && (
               <div className="overflow-hidden rounded-lg border border-gray-200 relative">
-                <Image
+                <img
                   src={coverImage}
                   alt="Cover preview"
-                  fill
+                  // fill
                   className="h-48 w-full object-cover"
                   onError={(e) => (e.currentTarget.style.display = "none")}
                 />
               </div>
             )}
+
 
             <div className="flex flex-col gap-1.5">
               <label className="text-xs font-semibold uppercase tracking-widest text-gray-400">
@@ -263,7 +278,8 @@ export default function CreateNews() {
               </label>
               <input
                 value={slug}
-                onChange={(e) => setSlug(e.target.value)}
+                onChange={(e) => setSlug(slugify(e.target.value))}
+                readOnly
                 placeholder="Enter URL slug... (e.g. my-article-title)"
                 className="h-10 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-blue-700"
               />
@@ -306,15 +322,7 @@ export default function CreateNews() {
             <Divider />
 
         
-            <ToolbarButton
-              onClick={() =>
-                editor.chain().focus().toggleHeading({ level: 2 }).run()
-              }
-              isActive={editor.isActive("heading", { level: 2 })}
-              title="Heading 2"
-            >
-              <Heading2 size={14} />
-            </ToolbarButton>
+      
             <ToolbarButton
               onClick={() =>
                 editor.chain().focus().toggleHeading({ level: 3 }).run()

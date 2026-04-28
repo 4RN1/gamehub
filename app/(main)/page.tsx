@@ -17,7 +17,7 @@ const newsPosts = await res.json()
 
 
   return (
-<main className="lg:ml-17 mx-auto">
+<main className="lg:ml-17 ">
 <TrendingSection/>
 <Newslayout sectionTitle="უახლესი ამბები" database={newsPosts} />
 </main>

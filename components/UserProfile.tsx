@@ -4,7 +4,7 @@ import { SquarePen, UserRoundPlus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { socialLinks } from "@/lib/testData";
-import SidebarLayout from "./SidebarLayout";
+import SidebarLayout from "./navbar-sidebar/SidebarLayout";
 
 
 interface UserStats {

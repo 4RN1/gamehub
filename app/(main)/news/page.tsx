@@ -17,7 +17,7 @@ const newsPosts = await res.json()
   return (
     <>
 
-<section className="lg:ml-17 max-w-400 mx-auto mb-5 px-5">
+<section className="lg:ml-33 max-w-420  mb-5 px-5">
 
 <NewsTitleLayout title = "ახალი ამბები"  desc = "ყველაფერი, რაც გეიმერს აინტერესებს — ახალი ამბები, ტექნიკა, ჭორები და ინფორმაცია პოპულარული თამაშების შესახებ."/>
 

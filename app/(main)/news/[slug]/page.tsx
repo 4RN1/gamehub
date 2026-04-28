@@ -1,5 +1,6 @@
 // app/news/[slug]/page.tsx
 
+import SidebarLayout from "@/components/navbar-sidebar/SidebarLayout";
 import pool from "@/lib/db";
 import { formatDate } from "@/lib/formatDate";
 import Image from "next/image";
@@ -20,7 +21,9 @@ export default async function PostPage({params,}: { params: Promise<{ slug: stri
 if (!post) notFound();
 
   return (
-    <div className="min-h-screen bg-zinc-900 flex flex-col items-center px-4 py-10">
+
+    <div className="bg-zinc-900 ">
+    <div className="min-h-screen max-w-280 mx-auto bg-zinc-900 flex flex-col items-center px-4 py-10">
       {/* Tags */}
       <div className="flex flex-wrap gap-2 w-full max-w-225 mb-4">
         {post.tags.map((tag: string) => (
@@ -42,11 +45,11 @@ if (!post) notFound();
 
       {/* Banner */}
       {post.image_url && (
-        <div className="relative w-full max-w-225 h-64 md:h-125 rounded-xl overflow-hidden mb-8">
-          <Image
+        <div className="relative w-full max-w-225 h-64 md:h-125 rounded-xl overflow-hidden ">
+          <img
             src={post.image_url}
             alt={post.title}
-            fill
+            // fill
             className="object-cover"
           />
         </div>
@@ -54,10 +57,18 @@ if (!post) notFound();
 
       {/* Content */}
 {/* Content */}
+
+
 <div
-  className="w-full max-w-220 rounded-lg  text-white text-lg leading-relaxed prose prose-invert"
+  className="w-full max-w-225 rounded-lg  text-white text-lg leading-relaxed prose prose-invert"
   dangerouslySetInnerHTML={{ __html: post.post_content }}
 />
+
+    </div>
+
+
+
+
 
     </div>
   );

@@ -70,19 +70,19 @@ const Newslayout = ({ sectionTitle, database }: NewsLayout) => {
                   className="flex gap-5 cursor-pointer group max-sm:flex-col max-sm:items-center max-sm:mb-5 border-b border-zinc-700 py-5"
                 >
                   {/* Thumbnail */}
-                  <div className="relative w-79 h-55 shrink-0 overflow-hidden rounded ">
-                    <div className="w-full h-full bg-[#2e2e2e] rounded " />
+                  <div className="relative w-85 h-55 shrink-0 overflow-hidden rounded transition">
+                   
 
-                    <Image
+                    <img
                       src={
                         article.image_url
                           ? article.image_url
                           : "/assets/LOGO.png"
                       }
                       alt={article.title}
-                      fill
+                      // fill
                       sizes="width:100%"
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover  group-hover:scale-105 transition-transform duration-300 h-full"
                     />
                   </div>
 

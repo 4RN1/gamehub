@@ -1,4 +1,4 @@
-import GoogleSignUpBtn from '@/components/GoogleSignUpBtn'
+import GoogleSignUpBtn from '@/components/buttons/GoogleSignUpBtn'
 import Link from 'next/link'
 
 

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar-sidebar/Navbar";
 import Footer from "@/components/Footer";
-import ScrollToTopBtn from "@/components/ScrollToTopBtn";
-import SideNavbar from "@/components/NavbarSidebar";
-import AdminSidebar from "@/components/AdminSidebar";
-import NavbarSidebar from "@/components/NavbarSidebar";
+import ScrollToTopBtn from "@/components/buttons/ScrollToTopBtn";
+import SideNavbar from "@/components/navbar-sidebar/NavbarSidebar";
+import AdminSidebar from "@/components/adminComp/AdminSidebar";
+import NavbarSidebar from "@/components/navbar-sidebar/NavbarSidebar";
 
 export const metadata: Metadata = {
   title: "GameHub",

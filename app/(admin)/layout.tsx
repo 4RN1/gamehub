@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
-import AdminSidebar from "@/components/AdminSidebar";
+import AdminSidebar from "@/components/adminComp/AdminSidebar";
 
 export default async function AdminLayout({
   children,
