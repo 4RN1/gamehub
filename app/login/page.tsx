@@ -1,4 +1,8 @@
 import Link from "next/link";
+import { adminLogin } from "../actions/adminLogin";
+
+
+
 
 const Page = () => {
   return (
@@ -34,29 +38,23 @@ const Page = () => {
         </Link>
       </p>
 
-      <input
-        type="text"
-        placeholder="Username"
-        className="w-full h-10 mb-4 px-3 border border-white/30 rounded bg-transparent text-white focus:outline-none focus:border-purple-500"
-      />
-
-      <input
-        type="password"
-        placeholder="Password"
-        className="w-full h-10 mb-4 px-3 border border-white/30 rounded bg-transparent text-white focus:outline-none focus:border-purple-500"
-      />
-
-<div className="flex justify-between">
-      <label className="flex items-center gap-2 text-gray-400 text-sm mb-6">
-        <input type="checkbox" className="w-4 h-4" />
-        დამიმახსოვრე
-      </label>
-
-      <Link href="forgot-spwd" className="text-sm text-purple-400 hover:text-purple-600">დაგავიწყდა პაროლი?</Link>
-</div>
-      <button className="w-full h-10 cursor-pointer bg-purple-600 rounded text-white hover:bg-purple-700 transition">
-        შესვლა
-      </button>
+   <form action={adminLogin} className="flex flex-col">
+  <input
+    name="username"  // ← add this
+    type="text"
+    placeholder="Username"
+    className="w-full h-10 mb-4 px-3 border border-white/30 rounded bg-transparent text-white focus:outline-none focus:border-purple-500"
+  />
+  <input
+    name="password"  // ← add this
+    type="password"
+    placeholder="Password"
+    className="w-full h-10 mb-4 px-3 border border-white/30 rounded bg-transparent text-white focus:outline-none focus:border-purple-500"
+  />
+  <button type="submit" className="w-full h-10 cursor-pointer bg-purple-600 rounded text-white hover:bg-purple-700 transition">
+    შესვლა
+  </button>
+</form>
 
     </div>
   </div>

@@ -1,5 +1,6 @@
 import CategorySection from "@/components/CategorySection";
 import Newslayout from "@/components/Newslayout";
+import SupportModal from "@/components/support/SupportModal";
 import TrendingSection from "@/components/TrendingSection";
 import { testItems } from "@/lib/testData";
 

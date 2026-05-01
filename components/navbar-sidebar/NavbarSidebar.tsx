@@ -4,15 +4,14 @@ import { Home, NewspaperIcon, FormInput } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { BiNotification } from "react-icons/bi";
-import { MdAccountBox } from "react-icons/md";
+import { MdAccountBox, MdOutlineSupportAgent } from "react-icons/md";
+import SupportModal from "../support/SupportModal";
 
 
 const navLinks = [
   { href: "/", icon: Home, label: "Home" },
   { href: "/news", icon: NewspaperIcon, label: "News" },
-
-  { href: "/account", icon: MdAccountBox, label: "Account" },
+  
 
 ]
 
@@ -24,6 +23,7 @@ const NavbarSidebar = () => {
 
 
 const [notificationsOpen, setNotificationsOpen] = useState(false)
+const [isSupportOpen, setIsSupportOpen] = useState(false)
 
   const hideNavbar =
     ["/login", "/registration"].includes(pathname) ||
@@ -55,6 +55,13 @@ const [notificationsOpen, setNotificationsOpen] = useState(false)
       )}
     </li>
   ))}
+
+    <li className="flex items-center justify-center p-3 rounded-lg transition-colors text-[#9ca3af] hover:bg-white/5">
+      <MdOutlineSupportAgent 
+  size={25} 
+  onClick={() => setIsSupportOpen(true)} 
+/>
+    </li>
 </ul>
       </nav>
 
@@ -65,8 +72,7 @@ const [notificationsOpen, setNotificationsOpen] = useState(false)
             key={href}
             href={href}
             className="flex flex-col items-center gap-1 transition-colors"
-            style={isActive(href) ? { color: "white" } : { color: "#9ca3af" }}
-          >
+            style={isActive(href) ? { color: "white" } : { color: "#9ca3af" }}>
             <Icon size={22} />
             <span className="text-[12px]">{label}</span>
           
@@ -78,11 +84,10 @@ const [notificationsOpen, setNotificationsOpen] = useState(false)
           
       </nav>
 
-
-
-
-
-      
+      <SupportModal 
+  isOpen={isSupportOpen} 
+  onClose={() => setIsSupportOpen(false)} 
+/>
     </div>
   )
 }

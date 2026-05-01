@@ -279,7 +279,6 @@ const editor = useEditor({
               <input
                 value={slug}
                 onChange={(e) => setSlug(slugify(e.target.value))}
-                readOnly
                 placeholder="Enter URL slug... (e.g. my-article-title)"
                 className="h-10 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-blue-700"
               />

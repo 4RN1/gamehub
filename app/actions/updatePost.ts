@@ -8,7 +8,7 @@ interface updateNews {
     slug:string,
     image_url:string,
     title:string,
-    tags:[],
+    tags:string[],
     short_desc:string,
     post_content:string,
     category:string
@@ -29,25 +29,29 @@ category} : updateNews) {
 
 try {
     await pool.query(
-      `UPDATE newspost 
+      `UPDATE newsposts 
        SET 
          slug = $2, 
          image_url = $3, 
          title = $4, 
-         tags = $5, 
-         short_desc = $6, 
-         post_content = $7, 
-         category = $8 
+         short_desc = $5, 
+          post_content = $6, 
+           category = $7 ,
+         tags = $8
+         
+        
+        
        WHERE id = $1`,
-      [id, slug, image_url, title, tags, short_desc, post_content, category]
+      [id, slug, image_url, title, short_desc,  post_content, category, tags ]
     );
 
     revalidatePath("/admin/news");
-    return { success: true };
+    return { success: true  };
+   
 
   } catch (error) {
-    console.error("Failed to update post:", error);
     return { success: false, error: "Failed to update post" };
+    
   }
 
 }

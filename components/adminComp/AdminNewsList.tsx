@@ -17,7 +17,7 @@ interface newsItem {
   slug: string;
   category: string;
   image_url: string;
-  short_description: string;
+  short_desc: string;
 }
 
 interface AdminNewsListProps {
@@ -45,7 +45,7 @@ const AdminNewsList = ({ news }: AdminNewsListProps) => {
               <button className="border border-blue-700 text-blue-500 hover:bg-blue-50 text-sm font-semibold px-5 py-2 rounded-md transition-colors">Clear</button>
             </div>
           </div>
-          <Link href="/admin/add-news" className="bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold px-5 py-2 rounded-md transition-colors flex items-center gap-2">
+          <Link href="/dashboard/add-news" className="bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold px-5 py-2 rounded-md transition-colors flex items-center gap-2">
             <Plus /> Add News
           </Link>
         </div>
@@ -84,7 +84,7 @@ const AdminNewsList = ({ news }: AdminNewsListProps) => {
                         ))}
                       </div>
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 cursor-pointer">
                       <CopyToClipboardButton slug={item.slug} />
                     </td>
                     <td className="px-4 py-3">
@@ -94,7 +94,7 @@ const AdminNewsList = ({ news }: AdminNewsListProps) => {
                             setEditSlug(item.slug);
                             setEditOpen(true);
                           }}
-                          className="border border-gray-200 hover:border-blue-500 hover:text-blue-500 text-gray-400 rounded-md w-7 h-7 flex items-center justify-center transition-colors"
+                          className="border border-gray-200 cursor-pointer hover:border-blue-500 hover:text-blue-500 text-gray-400 rounded-md w-7 h-7 flex items-center justify-center transition-colors"
                         >
                           <Pencil size={13} />
                         </button>
@@ -119,7 +119,7 @@ const AdminNewsList = ({ news }: AdminNewsListProps) => {
         <EditNewsModal
           open={editOpen}
           onclose={() => setEditOpen(false)}
-          newsItem={news.find((item) => item.slug === editSlug) ?? null}
+          newsItem={news.find((item) => item.slug === editSlug)}
         />
       </div>
     </div>

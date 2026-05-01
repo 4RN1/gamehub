@@ -1,5 +1,5 @@
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
 import AdminSidebar from "@/components/adminComp/AdminSidebar";
 
 export default async function AdminLayout({
@@ -7,23 +7,15 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  //  const session = await getServerSession();
-  const session = true;
+  const cookieStore = await cookies();
+  const isAdmin = cookieStore.get("admin");
 
-  // if not logged in, redirect to login
-  if (!session) {
+  if (!isAdmin) {
     redirect("/login");
   }
 
-  // if logged in but not admin, redirect to home
-//   if (session.user.role !== "admin") {
-//     redirect("/");
-//   }
-
   return (
     <div className="flex">
-      {/* optional: admin sidebar/navbar here later */}
-
       <AdminSidebar />
       <main className="w-full">{children}</main>
     </div>

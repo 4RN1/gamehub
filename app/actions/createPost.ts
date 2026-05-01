@@ -25,7 +25,6 @@ export async function createPost(formData: {
     return { success: true, data: result.rows[0] };
 
   } catch (error) {
-    console.error("Failed to create post:", error);
     return { success: false, error: "Failed to create post" };
   }
 }

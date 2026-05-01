@@ -2,27 +2,22 @@
 import { Handshake, Users } from "lucide-react";
 import { FaClipboardList } from "react-icons/fa";
 import Link from "next/link"
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { MdForum, MdOutlineSupportAgent, MdPostAdd } from "react-icons/md";
 
 const links = [
-  {
-    group: "Permissions",
-    items: [
-      { href: "/admin/users", label: "Users", icon: <Users size={20} /> },
-    ]
-  },
+ 
   {
     group: "Content",
     items: [
-      { href: "/admin/news-list", label: "News List", icon: <FaClipboardList size={20} /> },
-      { href: "/admin/add-news", label: "Add News", icon: <MdPostAdd size={20} /> },
+      { href: "/dashboard/news-list", label: "News List", icon: <FaClipboardList size={20} /> },
+      { href: "/dashboard/add-news", label: "Add News", icon: <MdPostAdd size={20} /> },
     ]
   },
   {
     group: "Support",
     items: [
-      { href: "/admin/support", label: "Support Messages", icon: <MdOutlineSupportAgent size={20} /> },
+      { href: "/dashboard/support", label: "Support Messages", icon: <MdOutlineSupportAgent size={20} /> },
     ]
   }
 ]
@@ -38,7 +33,7 @@ const AdminSidebar = () => {
 
       {/* Header */}
       <div className="border-b border-blue-800 text-center py-5 px-4">
-        <Link href="/admin/dashboard">
+        <Link href="/dashboard">
           <h1 className="text-2xl font-bold italic tracking-wide text-white hover:text-blue-300 transition-colors">
             Admin Panel
           </h1>
@@ -73,7 +68,7 @@ const AdminSidebar = () => {
       {/* Logout */}
       <div className="px-4 py-6 border-t border-blue-800">
         <button
-          onClick={() => console.log("logout")}
+          onClick={() => redirect('/login')}
           className="w-full py-2 rounded-lg bg-blue-700 hover:bg-blue-600 text-white font-semibold italic tracking-wide transition-colors cursor-pointer"
         >
           LOGOUT

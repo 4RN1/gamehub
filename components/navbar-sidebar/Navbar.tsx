@@ -50,13 +50,7 @@ const Navbar = () => {
             />
             
           </div>
-            <Link
-              href="/login"
-              className="px-5 py-2 font-medium rounded text-black max-sm:px-5 max-sm:py-2 max-sm:text-sm"
-              style={{ backgroundColor: "orange" }}
-            >
-              Sign in
-            </Link>
+          
 
            
           </div>
