@@ -1,7 +1,13 @@
 "use client"
+import { sendMessage } from '@/app/actions/sendSupportMessage'
 import React from 'react'
 
+
 const SupportModal = ({ isOpen, onClose }) => {
+
+
+
+
   if (!isOpen) return null
 
   return (
@@ -30,24 +36,37 @@ const SupportModal = ({ isOpen, onClose }) => {
         {/* Content */}
         <div className="space-y-4">
           <p className="text-sm text-white">
-            Need help? Send us a message and we’ll get back to you.
+            გაქვს შენიშვნა? ან გჭირდება დახმარება? დაგვიკავშირდი.
           </p>
+
+          <form action={sendMessage} className='space-y-4'>
+
+          <input
+            type="text"
+            name='name'
+            placeholder="სახელი"
+            className="w-full border border-zinc-500 rounded-lg px-3 py-2 outline-none  focus:border-white/60"
+          />
 
           <input
             type="email"
-            placeholder="Your email"
+            name='email'
+            placeholder="მეილი"
             className="w-full border border-zinc-500 rounded-lg px-3 py-2 outline-none  focus:border-white/60"
           />
 
           <textarea
-            placeholder="Your message..."
+            placeholder="შენი შეტყობინება"
+            name='message'
             rows={4}
             className="w-full border border-zinc-500 rounded-lg px-3 py-2 outline-none focus:border-white/60"
           />
 
           <button className="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition cursor-pointer">
-            Send Message
+            გაგზავნა
           </button>
+
+          </form>
         </div>
 
       </div>

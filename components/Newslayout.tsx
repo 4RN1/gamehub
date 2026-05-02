@@ -39,8 +39,8 @@ const Newslayout = ({ sectionTitle, database }: NewsLayout) => {
             </h2>
 
             {/* Filter Tabs */}
-            {/* <div className="flex gap-2 mb-6 flex-wrap max-sm:justify-center">
-              {filters.map((filter) => (
+            <div className="flex gap-2 mb-6 flex-wrap max-sm:justify-center">
+              {["ყველა" , "ტექი" , "თამაშები"].map((filter) => (
                 <button
                   key={filter}
                   onClick={()=> setFilterByCategory(filter)}
@@ -53,7 +53,7 @@ const Newslayout = ({ sectionTitle, database }: NewsLayout) => {
                   {filter}
                 </button>
               ))}
-            </div> */}
+            </div>
 
             {/* Article List */}
             <div className="flex flex-col gap-6 max-w-275">
@@ -113,12 +113,7 @@ const Newslayout = ({ sectionTitle, database }: NewsLayout) => {
               ))}
             </div>
 
-            <span className="flex justify-center transition-all ">
-              <Ellipsis
-                size={60}
-                className="bg-gray-700 ring ring-white/20 hover:opacity-95 hover:scale-105 duration-75 cursor-pointer rounded-2xl w-25 my-10"
-              />{" "}
-            </span>
+  
           </div>
 
           {/* AD CONTAINERS */}
