@@ -14,6 +14,8 @@ export default async function AdminLayout({
     redirect("/login");
   }
 
+  
+
   return (
     <div className="flex">
       <AdminSidebar />

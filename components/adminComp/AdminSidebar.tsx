@@ -4,6 +4,7 @@ import { FaClipboardList } from "react-icons/fa";
 import Link from "next/link"
 import { redirect, usePathname } from "next/navigation";
 import { MdForum, MdOutlineSupportAgent, MdPostAdd } from "react-icons/md";
+import { useState } from "react";
 
 const links = [
  
@@ -26,6 +27,8 @@ const AdminSidebar = () => {
   const path = usePathname();
 
   if (path === '/admin') return null;
+
+
 
   return (
     <div className="bg-blue-950 w-64 relative">
