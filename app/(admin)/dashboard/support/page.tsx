@@ -1,9 +1,8 @@
-import { getSupportMessage } from '@/app/api/supportMessages/route'
-
 import SupportList from '@/components/support/SupportPage'
 
 export default async function page() {
-  const tickets = await getSupportMessage()
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/supportMessages`)
+  const tickets = await res.json()
 
   return (
     <div>
