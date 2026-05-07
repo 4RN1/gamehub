@@ -5,8 +5,12 @@ declare global {
 }
 
 const pool = globalThis.pool ?? new Pool({
+  
   connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+  
 })
+console.log('DB URL:', process.env.DATABASE_URL)
 
 if (process.env.NODE_ENV !== 'production') {
   globalThis.pool = pool

@@ -9,6 +9,7 @@ try {
 
 
 } catch (error) {
+    console.error("trending API error:", error)
     return Response.json({error: String(error)} , {status:500})
 }
 
