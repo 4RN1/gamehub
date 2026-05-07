@@ -27,6 +27,7 @@ interface NewsItem {
   short_desc: string;
   tags: string[];
   post_content: string;
+  slider_status: boolean;
 }
 
 interface EditNewsModalProps {
@@ -94,6 +95,7 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
   const [shortDesc, setShortDesc] = useState("");
   const [newsSlug, setNewsSlug] = useState("");
   const [tags, setTags] = useState<string[]>([]);
+  const [sliderStatus, setSliderStatus] = useState(false);  // 👈 add
 
   const editor = useEditor({
     extensions: [
@@ -120,6 +122,7 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
       setShortDesc(newsItem.short_desc);
       setNewsSlug(newsItem.slug);
       setTags(newsItem.tags ?? []);
+      setSliderStatus(newsItem.slider_status ?? false); 
 
       // Set editor content once editor is ready
       if (editor && newsItem.post_content) {
@@ -269,6 +272,26 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
                 className="h-10 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-blue-700"
               />
             </div>
+
+            <div className="flex items-center justify-between rounded-md border border-gray-300 px-4 py-3">
+  <div>
+    <p className="text-sm font-semibold text-gray-700">Slider</p>
+    <p className="text-xs text-gray-400">Show this article in the homepage slider</p>
+  </div>
+  <button
+    type="button"
+    onClick={() => setSliderStatus((prev) => !prev)}
+    className={`relative h-6 w-11 rounded-full transition-colors ${
+      sliderStatus ? "bg-blue-700" : "bg-gray-300"
+    }`}
+  >
+    <span
+      className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
+        sliderStatus ? "translate-x-5" : "translate-x-0"
+      }`}
+    />
+  </button>
+</div>
           </div>
         </div>
 
@@ -387,6 +410,7 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
                 short_desc: shortDesc,
                 post_content: editor.getHTML(),
                 tags,
+                slider_status: sliderStatus,
               });
               onclose();
             }}

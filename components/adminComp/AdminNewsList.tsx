@@ -18,6 +18,7 @@ interface newsItem {
   category: string;
   image_url: string;
   short_desc: string;
+  slider_status: boolean;
 }
 
 interface AdminNewsListProps {
@@ -60,7 +61,7 @@ const AdminNewsList = ({ news }: AdminNewsListProps) => {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-200">
-                  {["", "Title", "Created At", "Tags", "Copy URL", "Action"].map((h) => (
+                  {["", "Title", "Created At", "Tags", "Status", "Copy URL", "Action"].map((h) => (
                     <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-widest">
                       {h}
                     </th>
@@ -84,6 +85,15 @@ const AdminNewsList = ({ news }: AdminNewsListProps) => {
                         ))}
                       </div>
                     </td>
+                    <td className="px-4 py-3">
+  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${
+    item.slider_status
+      ? "bg-green-50 text-green-700 border-green-200"
+      : "bg-gray-100 text-gray-500 border-gray-200"
+  }`}>
+    {item.slider_status ? "Slider" : "Default"}
+  </span>
+</td>
                     <td className="px-4 py-3 cursor-pointer">
                       <CopyToClipboardButton slug={item.slug} />
                     </td>
@@ -106,7 +116,7 @@ const AdminNewsList = ({ news }: AdminNewsListProps) => {
 
                 {news.length === 0 && (
                   <tr>
-                    <td colSpan={6} className="px-4 py-3 text-center text-gray-500">
+                    <td colSpan={7} className="px-4 py-3 text-center text-gray-500">
                       სიახლეები არ არის დამატებული
                     </td>
                   </tr>

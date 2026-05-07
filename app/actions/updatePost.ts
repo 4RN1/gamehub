@@ -15,19 +15,22 @@ interface updateNews {
 
 }
 
-export async function UpdatePost(
-    {
-id,
-slug,
-image_url,
-title,
-tags,
-short_desc,
-post_content,
-category} : updateNews) {
-  
+interface updateNews {
+    id: number, 
+    slug: string,
+    image_url: string,
+    title: string,
+    tags: string[],
+    short_desc: string,
+    post_content: string,
+    category: string,
+    slider_status: boolean  // 👈 add
+}
 
-try {
+export async function UpdatePost({
+  id, slug, image_url, title, tags, short_desc, post_content, category, slider_status  // 👈 add
+}: updateNews) {
+  try {
     await pool.query(
       `UPDATE newsposts 
        SET 
@@ -35,23 +38,18 @@ try {
          image_url = $3, 
          title = $4, 
          short_desc = $5, 
-          post_content = $6, 
-           category = $7 ,
-         tags = $8
-         
-        
-        
+         post_content = $6, 
+         category = $7,
+         tags = $8,
+         slider_status = $9
        WHERE id = $1`,
-      [id, slug, image_url, title, short_desc,  post_content, category, tags ]
+      [id, slug, image_url, title, short_desc, post_content, category, tags, slider_status]  // 👈 add
     );
 
     revalidatePath("/admin/news");
-    return { success: true  };
-   
-
+    return { success: true };
   } catch (error) {
+    console.error("UpdatePost error:", error);
     return { success: false, error: "Failed to update post" };
-    
   }
-
 }

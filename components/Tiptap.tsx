@@ -21,7 +21,6 @@ import Image from "next/image";
 import { createPost } from "@/app/actions/createPost";
 import { slugify } from "@/utils/slugify";
 
-
 type ToolbarButtonProps = {
   onClick: () => void;
   isActive?: boolean;
@@ -54,7 +53,6 @@ const ToolbarButton = ({
   </button>
 );
 
-
 const Divider = () => <div className="mx-1 h-6 w-px bg-gray-200" />;
 
 export default function CreateNews() {
@@ -66,23 +64,25 @@ export default function CreateNews() {
   const [slug, setSlug] = useState("");
   const [success, setSuccess] = useState(false);
   const [manual, setManual] = useState(false);
+  const [sliderStatus, setSliderStatus] = useState(false);
 
-const editor = useEditor({
-  extensions: [
-    StarterKit.configure({
-      heading: {
-        levels: [2, 3],
+  const editor = useEditor({
+    extensions: [
+      StarterKit.configure({
+        heading: {
+          levels: [2, 3],
+        },
+      }),
+    ],
+    content: "<p>Start writing your article here...</p>",
+    immediatelyRender: false,
+    editorProps: {
+      attributes: {
+        class:
+          "min-h-[320px] px-5 py-4 text-sm text-gray-800 leading-relaxed outline-none prose max-w-none prose-h2:text-2xl prose-h2:font-bold prose-h3:text-xl prose-h3:font-bold prose-ul:list-disc prose-ol:list-decimal prose-blockquote:border-l-4 prose-blockquote:pl-4 prose-blockquote:italic",
       },
-    }),
-  ],
-  content: "<p>Start writing your article here...</p>",
-  immediatelyRender: false,
-  editorProps: {
-    attributes: {
-      class: "min-h-[320px] px-5 py-4 text-sm text-gray-800 leading-relaxed outline-none prose max-w-none prose-h2:text-2xl prose-h2:font-bold prose-h3:text-xl prose-h3:font-bold prose-ul:list-disc prose-ol:list-decimal prose-blockquote:border-l-4 prose-blockquote:pl-4 prose-blockquote:italic",
     },
-  },
-});
+  });
 
   const tags = [
     "Action",
@@ -99,9 +99,7 @@ const editor = useEditor({
     "Survival",
     "Multiplayer",
     "Open World",
-    "Romantic"
-
-
+    "Romantic",
   ];
 
   const handleTagChange = (tag: string) => {
@@ -113,46 +111,43 @@ const editor = useEditor({
   const handleSubmit = async () => {
     const html = editor?.getHTML();
     console.log({
-    slug,
-    image_url: coverImage,
-    title,
-    short_desc: shortDescription,
-    post_content: html ?? "",
-    category,
-    tags: selectedTags,     
+      slug,
+      image_url: coverImage,
+      title,
+      short_desc: shortDescription,
+      post_content: html ?? "",
+      category,
+      tags: selectedTags,
     });
 
     await createPost({
       slug,
       image_url: coverImage,
-    title,
-    short_desc: shortDescription,
-    post_content: html ?? "",
-    category,
-    tags: selectedTags,
-    })
-  
+      title,
+      short_desc: shortDescription,
+      post_content: html ?? "",
+      category,
+      tags: selectedTags,
+      slider_status: sliderStatus,
+    });
 
     setTitle("");
-  setCategory("");
-  setCoverImage("");
-  setSelectedTags([]);
-  setShortDescription("");
-  setSlug("");
-  editor?.commands.clearContent();
+    setCategory("");
+    setCoverImage("");
+    setSelectedTags([]);
+    setShortDescription("");
+    setSlug("");
+    editor?.commands.clearContent();
 
-  setSuccess(true);
-  setTimeout(() => setSuccess(false), 3000);
-
+    setSuccess(true);
+    setTimeout(() => setSuccess(false), 3000);
   };
 
-
-   useEffect(() => {
+  useEffect(() => {
     if (!manual) {
       setSlug(slugify(title));
     }
   }, [title, manual]);
-  
 
   if (!editor) return null;
 
@@ -169,7 +164,6 @@ const editor = useEditor({
               Create Article
             </h1>
           </div>
-         
         </div>
 
         {/* Meta fields */}
@@ -259,19 +253,22 @@ const editor = useEditor({
               </div>
             )}
 
-
             <div className="flex flex-col gap-1.5">
               <label className="text-xs font-semibold uppercase tracking-widest text-gray-400">
                 Short Description
               </label>
               <input
                 value={shortDescription}
-                onChange={(e) => setShortDescription(e.target.value)}
+                onChange={(e) =>
+                  setShortDescription(e.target.value.slice(0, 150))
+                }
                 placeholder="Enter short description... (max:150 characters)"
                 className="h-10 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-blue-700"
               />
+              <p className="text-xs text-gray-400 text-right">
+                {shortDescription.length}/150
+              </p>
             </div>
-
             <div className="flex flex-col gap-1.5">
               <label className="text-xs font-semibold uppercase tracking-widest text-gray-400">
                 Slug
@@ -282,6 +279,27 @@ const editor = useEditor({
                 placeholder="Enter URL slug... (e.g. my-article-title)"
                 className="h-10 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-blue-700"
               />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+                Slider
+              </label>
+              <label className="flex items-center gap-3 cursor-pointer w-fit">
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    checked={sliderStatus}
+                    onChange={(e) => setSliderStatus(e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="w-10 h-6 bg-gray-200 peer-checked:bg-blue-700 rounded-full transition-colors" />
+                  <div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow transition-transform peer-checked:translate-x-4" />
+                </div>
+                <span className="text-sm text-gray-600">
+                  {sliderStatus ? "Featured in slider" : "Not in slider"}
+                </span>
+              </label>
             </div>
           </div>
         </div>
@@ -320,8 +338,6 @@ const editor = useEditor({
 
             <Divider />
 
-        
-      
             <ToolbarButton
               onClick={() =>
                 editor.chain().focus().toggleHeading({ level: 3 }).run()
@@ -404,19 +420,29 @@ const editor = useEditor({
           </button>
         </div>
       </div>
-     {success && (
-  <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-xl border border-green-500/20 bg-zinc-900 px-5 py-3.5 shadow-2xl shadow-black/40">
-    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-green-500/10">
-      <svg className="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-      </svg>
-    </div>
-    <div>
-      <p className="text-md font-semibold text-white">Post Published!</p>
-      <p className="text-xs text-zinc-400">Your article is now live</p>
-    </div>
-  </div>
-)}
+      {success && (
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-xl border border-green-500/20 bg-zinc-900 px-5 py-3.5 shadow-2xl shadow-black/40">
+          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-green-500/10">
+            <svg
+              className="h-4 w-4 text-green-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+          <div>
+            <p className="text-md font-semibold text-white">Post Published!</p>
+            <p className="text-xs text-zinc-400">Your article is now live</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
