@@ -1,7 +1,7 @@
-"use server"
+
 import pool from '@/lib/db'  // add this
 
- export async function getSupportMessage() {
+ export async function GET() {
     
     try {
             const result = await pool.query(
