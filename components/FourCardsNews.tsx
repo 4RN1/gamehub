@@ -18,7 +18,7 @@ interface NewsLayout {
 const FourCardsNews = ({database} : NewsLayout) => {
   return (
     
-<div className="col-start-1 col-end-4 grid lg:grid-cols-4 gap-5 md:grid-cols-2 max-sm:grid-cols-1 max-sm:col-span-full max-sm:px-2 mx-10">
+<div className="col-start-1 col-end-4 grid lg:grid-cols-4 gap-5 md:grid-cols-2 max-sm:grid-cols-1 max-sm:col-span-full max-sm:px-2 mx-2 sm:mx-10">
   {database?.slice(0, 4).map((t) => (
     <Link href={`/news/${t.slug}`} key={t.title} className="relative overflow-hidden rounded-xl h-70 cursor-pointer group">
       <img 

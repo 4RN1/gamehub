@@ -62,7 +62,7 @@ if (!post) notFound();
 
 
 <div
-  className="w-full max-w-225 rounded-lg  text-white text-md text-justify leading-relaxed prose prose-invert"
+  className="w-full max-w-225 w-full rounded-lg  text-white text-md text-justify leading-relaxed prose prose-invert"
   dangerouslySetInnerHTML={{ __html: post.post_content }}
 />
 
