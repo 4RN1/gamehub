@@ -295,8 +295,13 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
 
   </button>
 
+
 </div>
 
+  <div>
+    <p className="text-sm font-semibold text-gray-700">4 Card</p>
+    <p className="text-xs text-gray-400">Show this article in the homepage 4 Card</p>
+  </div>
   <button
     type="button"
     onClick={() => setFeaturedStatus((prev) => !prev)}
@@ -309,8 +314,12 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
         featuredStatus ? "translate-x-5" : "translate-x-0"
       }`}
     />
-    
+
   </button>
+
+
+</div>
+
           </div>
         </div>
 
