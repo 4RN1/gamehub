@@ -292,6 +292,22 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
         sliderStatus ? "translate-x-5" : "translate-x-0"
       }`}
     />
+
+  </button>
+
+  <button
+    type="button"
+    onClick={() => setSliderStatus((prev) => !prev)}
+    className={`relative h-6 w-11 rounded-full transition-colors ${
+      featuredStatus ? "bg-blue-700" : "bg-gray-300"
+    }`}
+  >
+    <span
+      className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
+        featuredStatus ? "translate-x-5" : "translate-x-0"
+      }`}
+    />
+    
   </button>
 </div>
           </div>
