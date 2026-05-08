@@ -275,7 +275,7 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
               />
             </div>
 
-            <div className="flex items-center justify-between rounded-md border border-gray-300 px-4 py-3">
+ <div className="flex items-center justify-between rounded-md border border-gray-300 px-4 py-3">
   <div>
     <p className="text-sm font-semibold text-gray-700">Slider</p>
     <p className="text-xs text-gray-400">Show this article in the homepage slider</p>
@@ -287,17 +287,14 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
       sliderStatus ? "bg-blue-700" : "bg-gray-300"
     }`}
   >
-    <span
-      className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
-        sliderStatus ? "translate-x-5" : "translate-x-0"
-      }`}
-    />
-
+    <span className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
+      sliderStatus ? "translate-x-5" : "translate-x-0"
+    }`} />
   </button>
-
-
 </div>
 
+{/* 👇 wrap this in its own div too */}
+<div className="flex items-center justify-between rounded-md border border-gray-300 px-4 py-3">
   <div>
     <p className="text-sm font-semibold text-gray-700">4 Card</p>
     <p className="text-xs text-gray-400">Show this article in the homepage 4 Card</p>
@@ -309,13 +306,11 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
       featuredStatus ? "bg-blue-700" : "bg-gray-300"
     }`}
   >
-    <span
-      className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
-        featuredStatus ? "translate-x-5" : "translate-x-0"
-      }`}
-    />
-
+    <span className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
+      featuredStatus ? "translate-x-5" : "translate-x-0"
+    }`} />
   </button>
+</div>
 
 
 </div>
