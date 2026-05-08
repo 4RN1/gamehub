@@ -28,6 +28,7 @@ interface NewsItem {
   tags: string[];
   post_content: string;
   slider_status: boolean;
+  featured_status:boolean;
 }
 
 interface EditNewsModalProps {
@@ -96,6 +97,7 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
   const [newsSlug, setNewsSlug] = useState("");
   const [tags, setTags] = useState<string[]>([]);
   const [sliderStatus, setSliderStatus] = useState(false);  // 👈 add
+  const [featuredStatus, setFeaturedStatus] = useState(false);
 
   const editor = useEditor({
     extensions: [
@@ -123,7 +125,7 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
       setNewsSlug(newsItem.slug);
       setTags(newsItem.tags ?? []);
       setSliderStatus(newsItem.slider_status ?? false); 
-
+      setFeaturedStatus(newsItem.featured_status ?? false)
       // Set editor content once editor is ready
       if (editor && newsItem.post_content) {
         editor.commands.setContent(newsItem.post_content);
@@ -411,6 +413,7 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
                 post_content: editor.getHTML(),
                 tags,
                 slider_status: sliderStatus,
+                featured_status: featuredStatus
               });
               onclose();
             }}
