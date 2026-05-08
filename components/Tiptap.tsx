@@ -65,6 +65,8 @@ export default function CreateNews() {
   const [success, setSuccess] = useState(false);
   const [manual, setManual] = useState(false);
   const [sliderStatus, setSliderStatus] = useState(false);
+  const [featuredStatus, setFeaturedStatus] = useState(false);
+
 
   const editor = useEditor({
     extensions: [
@@ -129,6 +131,7 @@ export default function CreateNews() {
       category,
       tags: selectedTags,
       slider_status: sliderStatus,
+      featured_status: featuredStatus
     });
 
     setTitle("");
@@ -298,6 +301,27 @@ export default function CreateNews() {
                 </div>
                 <span className="text-sm text-gray-600">
                   {sliderStatus ? "Featured in slider" : "Not in slider"}
+                </span>
+              </label>
+            </div>
+
+             <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+                Featured 4 Card
+              </label>
+              <label className="flex items-center gap-3 cursor-pointer w-fit">
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    checked={featuredStatus}
+                    onChange={(e) => setFeaturedStatus(e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="w-10 h-6 bg-gray-200 peer-checked:bg-blue-700 rounded-full transition-colors" />
+                  <div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow transition-transform peer-checked:translate-x-4" />
+                </div>
+                <span className="text-sm text-gray-600">
+                  {featuredStatus ? "Featured in 4 card news" : "Not in card"}
                 </span>
               </label>
             </div>

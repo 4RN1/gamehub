@@ -12,14 +12,15 @@ export async function createPost(formData: {
     category: string,
     tags: string[];
     slider_status: boolean;
+    featured_status:boolean
 }) {
 
   try {
     const result = await db.query(
-      `INSERT INTO newsposts (slug, image_url, title, short_desc, post_content, category, tags, slider_status)
-       VALUES ($1, $2, $3, $4, $5, $6, $7 , $8) RETURNING *`,
+      `INSERT INTO newsposts (slug, image_url, title, short_desc, post_content, category, tags, slider_status, featured_status)
+       VALUES ($1, $2, $3, $4, $5, $6, $7 , $8 , $9) RETURNING *`,
       [formData.slug, formData.image_url, formData.title, formData.short_desc,
-       formData.post_content, formData.category, formData.tags, formData.slider_status]
+       formData.post_content, formData.category, formData.tags, formData.slider_status, formData.featured_status]
     );
 
     revalidatePath("/admin/news");

@@ -24,11 +24,12 @@ interface updateNews {
     short_desc: string,
     post_content: string,
     category: string,
-    slider_status: boolean  // 👈 add
+    slider_status: boolean , // 👈 add
+    featured_status:boolean
 }
 
 export async function UpdatePost({
-  id, slug, image_url, title, tags, short_desc, post_content, category, slider_status  // 👈 add
+  id, slug, image_url, title, tags, short_desc, post_content, category, slider_status, featured_status  // 👈 add
 }: updateNews) {
   try {
     await pool.query(
@@ -41,9 +42,10 @@ export async function UpdatePost({
          post_content = $6, 
          category = $7,
          tags = $8,
-         slider_status = $9
+         slider_status = $9,
+         featured_status = $10
        WHERE id = $1`,
-      [id, slug, image_url, title, short_desc, post_content, category, tags, slider_status]  // 👈 add
+      [id, slug, image_url, title, short_desc, post_content, category, tags, slider_status, featured_status]  // 👈 add
     );
 
     revalidatePath("/admin/news");
