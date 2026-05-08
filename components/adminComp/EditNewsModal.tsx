@@ -295,9 +295,11 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
 
   </button>
 
+</div>
+
   <button
     type="button"
-    onClick={() => setSliderStatus((prev) => !prev)}
+    onClick={() => setFeaturedStatus((prev) => !prev)}
     className={`relative h-6 w-11 rounded-full transition-colors ${
       featuredStatus ? "bg-blue-700" : "bg-gray-300"
     }`}
@@ -309,7 +311,6 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
     />
     
   </button>
-</div>
           </div>
         </div>
 
