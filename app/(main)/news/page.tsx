@@ -4,11 +4,16 @@ import NewsTitleLayout from "@/components/NewsTitleLayout"
 import TwoBigCardLayout from "@/components/TwoBigCardLayout"
 import { gg } from "@/lib/testData"
 
+
+export const revalidate = 0 
+
 const news = async () => {
   const result = await pool.query(
     'SELECT id, slug, image_url, title, tags, short_desc, post_content, category, created_at FROM newsposts WHERE slider_status = false ORDER BY created_at DESC'
   )
   const newsPosts = result.rows
+
+
 
   return (
     <>
