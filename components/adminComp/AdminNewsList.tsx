@@ -19,6 +19,7 @@ interface newsItem {
   image_url: string;
   short_desc: string;
   slider_status: boolean;
+  featured_status:boolean;
 }
 
 interface AdminNewsListProps {
@@ -29,6 +30,7 @@ const AdminNewsList = ({ news }: AdminNewsListProps) => {
   const [editOpen, setEditOpen] = useState(false);
   const [editSlug, setEditSlug] = useState("");
 
+  
   return (
     <div>
       <div className="min-h-screen w-full bg-gray-100 text-gray-800 p-6 flex flex-col gap-5">
@@ -85,14 +87,12 @@ const AdminNewsList = ({ news }: AdminNewsListProps) => {
                         ))}
                       </div>
                     </td>
-                    <td className="px-4 py-3">
-  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${
-    item.slider_status
-      ? "bg-green-50 text-green-700 border-green-200"
-      : "bg-gray-100 text-gray-500 border-gray-200"
-  }`}>
-    {item.slider_status ? "Slider" : "Default"}
-  </span>
+     <td className="px-4 py-3">
+  {(() => {
+    if (item.slider_status) return <span className="text-xs font-semibold px-2.5 py-1 rounded-full border bg-green-50 text-green-700 border-green-200">Slider</span>
+    if (item.featured_status) return <span className="text-xs font-semibold px-2.5 py-1 rounded-full border bg-orange-50 text-orange-700 border-orange-200">4 Card</span>
+    return <span className="text-xs font-semibold px-2.5 py-1 rounded-full border bg-gray-100 text-gray-500 border-gray-200">Default</span>
+  })()}
 </td>
                     <td className="px-4 py-3 cursor-pointer">
                       <CopyToClipboardButton slug={item.slug} />
