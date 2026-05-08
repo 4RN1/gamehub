@@ -444,7 +444,6 @@ const EditNewsModal = ({ open, onclose, newsItem }: EditNewsModalProps) => {
           </button>
         </div>
       </div>
-    </div>
   );
 };
 
