@@ -63,7 +63,7 @@ const AdminNewsList = ({ news }: AdminNewsListProps) => {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-200">
-                  {["", "Title", "Created At", "Tags", "Status", "Copy URL", "Action"].map((h) => (
+                  {["სათაური", "შექნილი", "ტეგები", "სტატუსი", "URL-ს დაკოპირება", "მოქმედება"].map((h) => (
                     <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-widest">
                       {h}
                     </th>
@@ -73,9 +73,6 @@ const AdminNewsList = ({ news }: AdminNewsListProps) => {
               <tbody>
                 {news.map((item) => (
                   <tr key={item.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td className="px-4 py-3">
-                      <input type="checkbox" className="accent-orange-600 w-4 h-4" />
-                    </td>
                     <td className="px-4 py-3 text-sm text-gray-700 font-medium max-w-45 truncate">{item.title}</td>
                     <td className="px-4 py-3 text-xs text-gray-500">{formatDate(item.created_at)}</td>
                     <td className="px-4 py-3">

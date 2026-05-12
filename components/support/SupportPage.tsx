@@ -1,52 +1,34 @@
 "use client";
 import { useState } from "react";
 import { X } from "lucide-react";
+import { formatDate } from "@/lib/formatDate";
+import { resolveTicket } from "@/app/actions/resolveTicket";
+import { deleteSupportMsg } from "@/app/actions/deleteSupportMsg";
 
 
+interface supportType {
+  id: number;
+  user_name: string;
+  user_email: string;
+  user_message: string;
+  created_at: string;
+  resolved: boolean;
+}
 
-const statusStyles: Record<string, string> = {
-  Open: "bg-green-100 text-green-700 border-green-200",
-  Pending: "bg-orange-100 text-orange-600 border-orange-200",
-  Closed: "bg-gray-100 text-gray-500 border-gray-200",
-};
+interface support {
+  database: supportType[];
+}
 
-export default function SupportList({tickets}) {
-  const [selected, setSelected] = useState<number[]>([]);
+export default function SupportList({ database }: support) {
   const [subjectFilter, setSubjectFilter] = useState("");
   const [userFilter, setUserFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
-  const [applied, setApplied] = useState({ subject: "", user: "", status: "" });
-
-  const toggle = (id: number) =>
-    setSelected((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
-    );
-
-  const toggleAll = () =>
-    setSelected(selected.length === filtered.length ? [] : filtered.map((t) => t.id));
-
-  const handleFilter = () =>
-    setApplied({ subject: subjectFilter, user: userFilter, status: statusFilter });
-
-  const handleClear = () => {
-    setSubjectFilter("");
-    setUserFilter("");
-    setStatusFilter("");
-    setApplied({ subject: "", user: "", status: "" });
-  };
-
-  const filtered = tickets.filter(
-    (t) =>
-      t.subject.toLowerCase().includes(applied.subject.toLowerCase()) &&
-      t.user.toLowerCase().includes(applied.user.toLowerCase()) &&
-      t.status.toLowerCase().includes(applied.status.toLowerCase())
+  const [selectedTicket, setSelectedTicket] = useState<supportType | null>(
+    null,
   );
-
-  const allChecked = filtered.length > 0 && selected.length === filtered.length;
 
   return (
     <div className="min-h-screen w-full bg-gray-100 p-6 flex flex-col gap-5">
-
       {/* Filter */}
       <div className="bg-white border border-gray-200 shadow-sm rounded-xl p-5">
         <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
@@ -71,16 +53,10 @@ export default function SupportList({tickets}) {
             placeholder="Status"
             className="h-9 w-44 rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-blue-700"
           />
-          <button
-            onClick={handleFilter}
-            className="h-9 rounded-md bg-blue-700 px-5 text-sm font-semibold text-white hover:bg-blue-800 transition-colors"
-          >
+          <button className="h-9 rounded-md bg-blue-700 px-5 text-sm font-semibold text-white hover:bg-blue-800 transition-colors">
             Filter
           </button>
-          <button
-            onClick={handleClear}
-            className="h-9 rounded-md border border-blue-700 px-5 text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-colors"
-          >
+          <button className="h-9 rounded-md border border-blue-700 px-5 text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-colors">
             Clear
           </button>
         </div>
@@ -89,13 +65,14 @@ export default function SupportList({tickets}) {
       {/* Table */}
       <div className="bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden">
         <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-          <h1 className="text-2xl font-bold tracking-wide text-black">Support</h1>
+          <h1 className="text-2xl font-bold tracking-wide text-black">
+            Support
+          </h1>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full table-fixed">
             <colgroup>
-              <col className="w-10" />
               <col className="w-[30%]" />
               <col className="w-[18%]" />
               <col className="w-[14%]" />
@@ -105,20 +82,17 @@ export default function SupportList({tickets}) {
 
             <thead>
               <tr className="border-b border-gray-200">
-                {/* select-all checkbox */}
-                <th className="px-4 py-3 text-left">
-                  <input
-                    type="checkbox"
-                    checked={allChecked}
-                    onChange={toggleAll}
-                    className="accent-orange-600 h-4 w-4"
-                  />
-                </th>
-                {["Subject", "User", "Status", "Created At", "Action"].map((h) => (
+                {[
+                  "სახელი",
+                  "იმეილი",
+                  "სტატუსი",
+                  "გამოგზავნილია",
+                  "მოქმედება",
+                ].map((h) => (
                   <th
                     key={h}
                     className={`px-4 py-3 text-xs font-semibold uppercase tracking-widest text-gray-400 ${
-                      h === "Action" ? "text-right pr-7" : "text-left"
+                      h === "მოქმედება" ? "text-right pr-7" : "text-left"
                     }`}
                   >
                     {h}
@@ -128,72 +102,118 @@ export default function SupportList({tickets}) {
             </thead>
 
             <tbody>
-              {filtered.length === 0 ? (
-                <tr>
-                  <td colSpan={6} className="px-4 py-8 text-center text-sm text-gray-400">
-                    შენიშვნები არ მოიძებნა.
+              {database.map((item) => (
+                <tr
+                  key={item.id}
+                  className="border-b border-gray-100 transition-colors hover:bg-gray-50 last:border-0"
+                >
+                  <td className="px-4 py-3 text-sm text-gray-700">
+                    {item.user_name}
+                  </td>
+                  <td className="px-4 py-3 text-sm text-gray-700">
+                    {item.user_email}
+                  </td>
+
+                  <td className="px-4 py-3">
+                    <span
+                      className={`inline-flex items-center rounded-full border px-3 py-0.5 text-xs font-semibold ${item.resolved ? "text-green/500/10 bg-green-500" : "text-red-500 bg-red-500/10"}`}
+                    >
+                      {item.resolved ? "შესრულებულია" : "არ არის შესრულებული"}
+                    </span>
+                  </td>
+
+                  <td className="px-4 py-3 text-xs text-gray-500">
+                    {formatDate(item.created_at)}
+                  </td>
+
+                  <td className="px-4 py-3">
+                    <div className="flex items-center justify-end gap-2">
+                      <button
+                        onClick={() => setSelectedTicket(item)}
+                        className="flex h-7 items-center justify-center rounded-md border border-gray-200 px-3 text-xs font-semibold text-gray-600 transition-colors hover:border-blue-500 hover:text-blue-500 cursor-pointer "
+                      >
+                        გახსნა
+                      </button>
+                      <button 
+                      onClick={() => deleteSupportMsg(item.id)}
+                      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-gray-200 text-gray-400 transition-colors hover:border-orange-500 cursor-pointer hover:text-orange-500">
+                        <X size={13} />
+                      </button>
+                    </div>
                   </td>
                 </tr>
-              ) : (
-                filtered.map((item) => (
-                  <tr
-                    key={item.id}
-                    className="border-b border-gray-100 transition-colors hover:bg-gray-50 last:border-0"
-                  >
-                    {/* checkbox */}
-                    <td className="px-4 py-3">
-                      <input
-                        type="checkbox"
-                        checked={selected.includes(item.id)}
-                        onChange={() => toggle(item.id)}
-                        className="accent-orange-600 h-4 w-4"
-                      />
-                    </td>
-
-                    {/* subject */}
-                    <td className="px-4 py-3 text-sm font-medium text-gray-700 truncate">
-                      {item.subject}
-                    </td>
-
-                    {/* user */}
-                    <td className="px-4 py-3 text-sm text-gray-700">
-                      {item.user}
-                    </td>
-
-                    {/* status */}
-                    <td className="px-4 py-3">
-                      <span
-                        className={`inline-flex items-center rounded-full border px-3 py-0.5 text-xs font-semibold ${
-                          statusStyles[item.status]
-                        }`}
-                      >
-                        {item.status}
-                      </span>
-                    </td>
-
-                    {/* date */}
-                    <td className="px-4 py-3 text-xs text-gray-500">
-                      {item.createdAt}
-                    </td>
-
-                    {/* actions */}
-                    <td className="px-4 py-3">
-                      <div className="flex items-center justify-end gap-2">
-                        <button className="flex h-7 items-center justify-center rounded-md border border-gray-200 px-3 text-xs font-semibold text-gray-600 transition-colors hover:border-blue-500 hover:text-blue-500">
-                          Open
-                        </button>
-                        <button className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-gray-200 text-gray-400 transition-colors hover:border-orange-500 hover:text-orange-500">
-                          <X size={13} />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))
-              )}
+              ))}
             </tbody>
           </table>
         </div>
       </div>
+
+      {selectedTicket && (
+        <>
+          <div
+            className="inset-0 fixed h-full w-full bg-black/40 z-10"
+            onClick={() => setSelectedTicket(null)}
+          />
+          <div className="fixed inset-0 z-20 flex items-center justify-center p-4">
+            <div className="bg-white rounded-xl shadow-xl w-full max-w-md p-6 flex flex-col gap-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold text-gray-800">
+                  შეტყობინება
+                </h2>
+                <button
+                  onClick={() => setSelectedTicket(null)}
+                  className="text-gray-400 hover:text-gray-600 cursor-pointer "
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-3 text-sm">
+                <div>
+                  <p className="text-xs text-gray-400 mb-0.5">სახელი</p>
+                  <p className="text-gray-800 font-medium">
+                    {selectedTicket.user_name}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400 mb-0.5">იმეილი</p>
+                  <p className="text-gray-800">{selectedTicket.user_email}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400 mb-0.5">შეტყობინება</p>
+                  <p className="text-gray-700 bg-gray-50 rounded-lg p-3 leading-relaxed">
+                    {selectedTicket.user_message}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400 mb-0.5">გამოგზავნილია</p>
+                  <p className="text-gray-500">
+                    {formatDate(selectedTicket.created_at)}
+                  </p>
+                </div>
+                <div>
+                  <button
+                    onClick={async () => {
+                      await resolveTicket(selectedTicket.id);
+                      setSelectedTicket(null);
+                    }}
+                    disabled={selectedTicket.resolved}
+                    className={`w-full h-9 rounded-lg text-sm cursor-pointer  font-semibold transition-colors ${
+                      selectedTicket.resolved
+                        ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                        : "bg-green-600 text-white hover:bg-green-700"
+                    }`}
+                  >
+                    {selectedTicket.resolved
+                      ? "უკვე შესრულებულია"
+                      : "შესრულებულად მონიშვნა"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

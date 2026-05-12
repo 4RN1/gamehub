@@ -438,7 +438,7 @@ export default function CreateNews() {
             onClick={() => {
               handleSubmit();
             }}
-            className="h-9 rounded-md bg-blue-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-blue-800"
+            className="h-9 rounded-md bg-blue-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-blue-800 cursor-pointer "
           >
             Publish
           </button>
