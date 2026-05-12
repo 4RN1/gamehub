@@ -1,10 +1,10 @@
 "use client"
 
-import { Home, NewspaperIcon, FormInput } from "lucide-react";
+import { Home, NewspaperIcon,} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { MdAccountBox, MdOutlineSupportAgent } from "react-icons/md";
+import { MdOutlineSupportAgent } from "react-icons/md";
 import SupportModal from "../support/SupportModal";
 
 
@@ -56,7 +56,7 @@ const [isSupportOpen, setIsSupportOpen] = useState(false)
     </li>
   ))}
 
-    <li className="flex items-center justify-center p-3 rounded-lg transition-colors text-[#9ca3af] hover:bg-white/5">
+    <li className="flex items-center justify-center p-3 rounded-lg transition-colors text-[#9ca3af] hover:bg-white/5 cursor-pointer">
       <MdOutlineSupportAgent 
   size={25} 
   onClick={() => setIsSupportOpen(true)} 
@@ -80,7 +80,13 @@ const [isSupportOpen, setIsSupportOpen] = useState(false)
           </Link>
         ))}
 
-
+           <li className="flex flex-col items-center gap-1 transition-colors p-3 rounded-lg text-[#9ca3af] hover:bg-white/5 cursor-pointer">
+      <MdOutlineSupportAgent 
+  size={22} 
+  onClick={() => setIsSupportOpen(true)} 
+/>
+          <span className="text-[12px]">Support</span>
+    </li>
           
       </nav>
 

@@ -1,6 +1,6 @@
 "use client"
 import { sendMessage } from '@/app/actions/sendSupportMessage'
-import React from 'react'
+
 
 
 const SupportModal = ({ isOpen, onClose }) => {
@@ -11,7 +11,7 @@ const SupportModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center ">
       
       {/* Overlay */}
       <div 
@@ -20,7 +20,7 @@ const SupportModal = ({ isOpen, onClose }) => {
       />
 
       {/* Modal Box */}
-      <div className="relative bg-zinc-800 border border-zinc-700 w-full max-w-md rounded-2xl shadow-xl p-6 z-10">
+      <div className="relative bg-zinc-800 border border-zinc-700 w-full max-w-md rounded-2xl shadow-xl p-6 z-10 max-md:mx-10">
         
         {/* Header */}
         <div className="flex justify-between items-center mb-4">

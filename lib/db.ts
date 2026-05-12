@@ -10,7 +10,7 @@ const pool = globalThis.pool ?? new Pool({
   ssl: { rejectUnauthorized: false }
   
 })
-console.log('DB URL:', process.env.DATABASE_URL)
+
 
 if (process.env.NODE_ENV !== 'production') {
   globalThis.pool = pool

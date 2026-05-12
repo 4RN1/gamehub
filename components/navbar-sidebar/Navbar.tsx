@@ -38,7 +38,7 @@ const Navbar = () => {
             />
           </div>
 
-          {/* Sign In */}
+          {/* Admin Sign In */}
           <div className="flex items-center gap-5">
 
 
@@ -51,7 +51,7 @@ const Navbar = () => {
             
           </div>
           
-
+            <Link href="dashboard" className="bg-amber-400 text-black px-2 py-1 font-medium  rounded-md">Admin</Link>
            
           </div>
 
