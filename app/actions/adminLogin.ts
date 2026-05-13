@@ -9,7 +9,7 @@ export async function adminLogin(formData: FormData) {
   const password = formData.get("password");
 
   const result = await pool.query(
-    "SELECT * FROM admin WHERE username = $1 AND password = $2",
+    "SELECT * FROM private.admin WHERE username = $1 AND password = crypt($2, password)",
     [username, password]
   );
 
